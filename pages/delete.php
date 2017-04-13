@@ -28,12 +28,12 @@
 <?php
 	
 	if(!empty($error)){
-		echo "<div class='alert alert-danger text-center'>
-				<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> ".$error."
+		echo "<div class=\"alert alert-danger text-center\">
+				<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span> ".$error."
 			</div>";
 	}
 	if(!empty($style)){
-		echo "<div class='alert alert-danger invisible'>".$style."</div>";
+		echo "<div class=\"alert alert-danger invisible\">".$style."</div>";
 	}
 ?>
 </div>

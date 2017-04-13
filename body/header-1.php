@@ -7,7 +7,7 @@
 		<meta name="description" content="Open source real time web-based chat">
 		<meta name="author" content="f1she3">
 		<link rel="icon" href="<?= $_SESSION['host'].'/css/images/favicon.ico' ?>">
-		<title><?= $TITLE; ?></title>
+		<title><?= $title; ?></title>
 		<script type="text/javascript" src="<?= $_SESSION['host'].'/js/jquery.min.js' ?>"></script>
 		<script type="text/javascript" src="<?= $_SESSION['host'].'/js/bootstrap.min.js' ?>"></script>
 		<link href="<?= $_SESSION['host'].'/css/bootstrap.min.css' ?>" rel="stylesheet">

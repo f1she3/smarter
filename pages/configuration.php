@@ -14,40 +14,39 @@
 		if(!empty($_POST['o_password'])){
 			if(!empty($_POST['n_password'])){
 				if(!empty($_POST['r_password'])){
-					if($_POST['n_password'] == $_POST['r_password']){
-						if(strlen($_POST['n_password']) >= 6){
+					if($_POST['n_password'] == $_POST['r_password']){ if(strlen($_POST['n_password']) >= 6){
 							if($_POST['n_password'] != $_POST['o_password']){
 								if($ret_check_pass){
 									update_pass($_SESSION['name'], $n_password);
-									set_flash('success', "<span class='glyphicon glyphicon-ok'></span> <span class='glyphicon glyphicon-lock'></span>");
+									set_flash('success', "<span class=\"glyphicon glyphicon-ok'></span> <span class=\"glyphicon glyphicon-lock'></span>");
 									redirect(1);
 
 								}else{
-									$error = "l'ancien mot de passe est incorrect";
+									$error = 'l\'ancien mot de passe est incorrect';
 								}
 							
 							}else{
-								$error = "veuillez choisir un mot de passe différent de l'ancien";
+								$error = 'veuillez choisir un mot de passe différent de l\'ancien';
 							}
 						
 						}else{
-							$error = "le mot de passe doit contenir au minimum 6 caractères";
+							$error = 'le mot de passe doit contenir au minimum 6 caractères';
 						}
 					
 					}else{
-						$error = "les nouveaux mots de passe ne correspondent pas";
+						$error = 'les nouveaux mots de passe ne correspondent pas';
 					}
 				
 				}else{
-					$error = "veuillez répéter votre nouveau mot de passe";
+					$error = 'veuillez répéter votre nouveau mot de passe';
 				}
 			
 			}else{
-				$error = "veuillez saisir votre nouveau mot de passe";
+				$error = 'veuillez saisir votre nouveau mot de passe';
 			}
 		
 		}else{
-			$error = "veuillez saisir votre ancien mot de passe";
+			$error = 'veuillez saisir votre ancien mot de passe';
 		}
 	}
 ?>
@@ -58,12 +57,12 @@
 <?php
 
 	if(!empty($error)){
-		echo "<div class='alert alert-danger text-center'>
-				<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> ".$error."
+		echo "<div class=\"alert alert-danger text-center\">
+				<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span> ".$error."
 			</div>";
 	}
 	if(!empty($style)){
-		echo "<div class='alert alert-danger invisible'>".$style."</div>";
+		echo "<div class=\"alert alert-danger invisible\">".$style."</div>";
 	}
 ?>
 </div>

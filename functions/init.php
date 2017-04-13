@@ -14,7 +14,7 @@
 		$mysqli = mysqli_connect(constant('HOST'), constant('USER'), constant('PASSWORD'), constant('DB_NAME'));
 		if(!mysqli_connect_errno()){
 			if(!mysqli_set_charset($mysqli, 'utf8')){
-				$TITLE = $_SESSION['host_name'].' #erreur';
+				$title = $_SESSION['host_name'].' #erreur';
 				if(is_logged()){
 					require 'body/header-2.php';
 
@@ -27,7 +27,7 @@
 			}
 
 		}else{
-			$TITLE = $_SESSION['host_name'].' #erreur';
+			$title = $_SESSION['host_name'].' #erreur';
 			if(is_logged()){
 				require 'body/header-2.php';
 

@@ -58,11 +58,11 @@
 	// Enf of access right check
 	// Inclusion of several files, the order is important
 	if(is_logged()){
-		$TITLE = $_SESSION['host_name'].' @'.$_SESSION['name']; 
+		$title = $_SESSION['host_name'].' @'.$_SESSION['name']; 
 		require 'body/header-2.php';
 
 	}else{
-		$TITLE = $_SESSION['host_name'].' #'.$page;
+		$title = $_SESSION['host_name'].' #'.$page;
 		require 'body/header-1.php';
 	}
 	get_flash();
@@ -79,4 +79,4 @@
 	if(is_logged()){
 		echo "<script src=\"".$_SESSION['host']."/js/index.js\"></script>\n";
 	}
-	require 'body/footer.php';	
+	require 'body/footer.php';
