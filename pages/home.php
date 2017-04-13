@@ -1,4 +1,6 @@
-<div class="page-header"><h1 class="text-center">Bienvenue sur <?= $_SESSION['host_name'] ?> !</h1></div>
+<div class="page-header">
+	<h1 class="text-center">Bienvenue sur <?= $_SESSION['host_name'] ?> !</h1>
+</div>
 <p class="center-block">
 	<?= $_SESSION['host_name'] ?> est un <b>chat instantanné open source</b>, 
 	qui vous permet de discuter <b>publiquement</b> avec les autres membres, ou en <b>privé</b> avec vos amis. Le projet bénéficie d'améliorations

@@ -71,12 +71,12 @@
 		require 'functions/'.$page.'.func.php';
 	}
 	require 'pages/'.$page.'.'.$file_type;
-	echo "<script type='text/javascript' src='js/flash.js'></script>\n";
+	echo "<script type=\"text/javascript\" src=\"js/flash.js\"></script>\n";
 	$pages = scandir('js/');
 	if(in_array($page.'.js',$pages)){
-		echo "<script type='text/javascript' src='js/".$page.".js'></script>\n"; 
+		echo "<script type=\"text/javascript\" src=\"js/".$page.".js\"></script>\n"; 
 	}
 	if(is_logged()){
-		echo "<script src='".$_SESSION['host']."/js/index.js'></script>\n";
+		echo "<script src=\"".$_SESSION['host']."/js/index.js\"></script>\n";
 	}
 	require 'body/footer.php';	

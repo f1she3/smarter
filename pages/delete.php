@@ -20,8 +20,10 @@
 		}
 	}
 ?>
+<div class="page-header">
 <h3 class="text-center">Se désinscrire</h3>
-<h4 class="text-center">Veuillez saisir votre mot de passe afin de vous désinscrire</h4><hr>
+</div>
+<h4 class="text-center">Veuillez saisir votre mot de passe</h4>
 <div class="errors-block col-sm-6 col-sm-offset-3">
 <?php
 	

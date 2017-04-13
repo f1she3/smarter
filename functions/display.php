@@ -2,20 +2,20 @@
 
 	function set_error($title, $icon, $content, $location){
 			if($icon){
-				echo "<h2 class='text-center'>".$title."</h2>
-					<img src='../css/images/emojis/e_s.svg' height='40' width='40' class='center-block'>
-					<h4 class='text-center'><span class='glyphicon glyphicon-".$icon."'></span></h4>
-					<h4 class='text-center'>".$content."</h4><hr>
-					<a href='".$_SESSION['host']."/".$location."'>
-						<img src='../css/images/home.svg' height='75' width='75' class='center-block'>
+				echo "<h2 class=\"text-center\">".$title."</h2>
+					<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
+					<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
+					<h4 class=\"text-center\">".$content."</h4><hr>
+					<a href=\"".$_SESSION['host']."/".$location."\">
+						<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
 					</a>";
 			
 			}else{
-				echo "<h2 class='text-center'>".$title."</h2>
-					<img src='../css/images/emojis/e_s.svg' height='40' width='40' class='center-block'>
-					<h4 class='text-center'>".$content."</h4><hr>
-					<a href='".$_SESSION['host']."/".$location."'>
-						<img src='../css/images/home.svg' height='75' width='75' class='center-block'>
+				echo "<h2 class=\"text-center\">".$title."</h2>
+					<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
+					<h4 class=\"text-center\">".$content."</h4><hr>
+					<a href=\"".$_SESSION['host']."/".$location."\">
+						<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
 					</a>";
 				
 			}
@@ -59,8 +59,8 @@
 			$type = $_SESSION['flash']['type'];
 			$content = $_SESSION['flash']['content'];
 			$_SESSION['flash']['type'] = $_SESSION['flash']['content'] = '';
-			echo "<span class='flash'>
-					<div class='alert alert-".$type."'>
+			echo "<span class=\"flash\">
+					<div class=\"alert alert-".$type."\">
 						".$content."
 					</div>
 				</span>";
@@ -81,7 +81,7 @@
 		$i = 0;
 		$result = array();
 		while(mysqli_stmt_fetch($query)){
-			$result[$i] = "<option value='".$r."'>\n"; $i++;
+			$result[$i] = "<option value=\"".$r."\">\n"; $i++;
 		}
 		
 		return $result;

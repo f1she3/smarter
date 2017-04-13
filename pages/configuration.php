@@ -51,8 +51,9 @@
 		}
 	}
 ?>
-
-<h3 class="text-center">Changer mes informations</h3><hr>
+<div class="page-header">
+	<h3 class="text-center">Changer mes informations</h3>
+</div>
 <div class="errors-block col-sm-6 col-sm-offset-3">
 <?php
 

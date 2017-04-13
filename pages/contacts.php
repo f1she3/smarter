@@ -5,7 +5,9 @@
 		rm_friend($_SESSION['name'], $_POST['name'], $mysqli);
 	}
 ?>
-<h3 class="text-center">Mes amis</h3><hr>
+<div class="page-header">
+	<h3 class="text-center">Mes amis</h3>
+</div>
 <form method="POST" action="">
 	<div class="form-group col-md-6 col-md-offset-3">
 		<input list="search_contacts" type="search" name="search" class="form-control" maxlength="25" placeholder="chercher un membre" autofocus>

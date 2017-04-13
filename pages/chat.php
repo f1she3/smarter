@@ -9,7 +9,9 @@
 		}
 	}
 ?>
-<h3 class="text-center">Chat général</h3><hr>
+<div class="page-header">
+	<h3 class="text-center">Chat général</h3>
+</div>
 <div class="messages">
 	<?php display_chat($mysqli); ?>
 </div>	

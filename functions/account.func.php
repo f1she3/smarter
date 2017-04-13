@@ -63,29 +63,33 @@
 		// The $flag is a boolean var used to know if we display the infos about 
 		// the current user, or just about another user
 		if(!$flag){
-			echo "<h3 class='text-center'>Informations</h3><hr>
-				<h3 class='text-center'>".$username."</h3>
-				<pre style='border-radius:10px'>
+			echo "<div class=\"page-header\">
+					<h3 class=\"text-center\">Informations</h3>
+				</div>
+				<h3 class=\"text-center\">".$username."</h3>
+				<pre style=\"border-radius:10px\">
 					<ul>
-						<li style='font-size:18px'>Pseudo : ".$username."</li>
-						<li style='font-size:18px'>Inscription : ".$ret_reg_date."</li>
-						<li style='font-size:18px'>".$friend_text." ".$ret_user_infos['friend_count']."</li>
-						<li style='font-size:18px'>".$msg_text." ".$ret_user_infos['public_message_count']."</li>
-						<li style='font-size:18px'>Grade : ".$ranks[$ret_user_infos['rank']]."</li>
+						<li style=\"font-size:18px\">Pseudo : ".$username."</li>
+						<li style=\"font-size:18px\">Inscription : ".$ret_reg_date."</li>
+						<li style=\"font-size:18px\">".$friend_text." ".$ret_user_infos['friend_count']."</li>
+						<li style=\"font-size:18px\">".$msg_text." ".$ret_user_infos['public_message_count']."</li>
+						<li style=\"font-size:18px\">Grade : ".$ranks[$ret_user_infos['rank']]."</li>
 					</ul>
 				</pre>";
 		
 		}else{
-			echo "<h3 class='text-center'>Informations</h3><hr>
-				<h3 class='text-center'>".$username."</h3>
-				<pre style='border-radius:10px'>
+			echo "<div class=\"page-header\">
+					<h3 class=\"text-center\">Informations</h3>
+				</div>
+				<h3 class=\"text-center\">".$username."</h3>
+				<pre style=\"border-radius:10px\">
 					<ul>
-						<li style='font-size:18px'>Pseudo : ".$username."</li>
-						<li style='font-size:18px'>Inscription : ".$ret_reg_date."</li>
-						<li style='font-size:18px'>".$friend_text." ".$ret_user_infos['friend_count']."</li>
-						<li style='font-size:18px'>".$msg_text." ".$ret_user_infos['message_count']."</li>
-						<li style='font-size:18px'>Grade : ".$ranks[$ret_user_infos['rank']]."</li>
-						<li style='font-size:18px'>Adresse IP actuelle : ".$_SERVER['REMOTE_ADDR']."</li>
+						<li style=\"font-size:18px\">Pseudo : ".$username."</li>
+						<li style=\"font-size:18px\">Inscription : ".$ret_reg_date."</li>
+						<li style=\"font-size:18px\">".$friend_text." ".$ret_user_infos['friend_count']."</li>
+						<li style=\"font-size:18px\">".$msg_text." ".$ret_user_infos['message_count']."</li>
+						<li style=\"font-size:18px\">Grade : ".$ranks[$ret_user_infos['rank']]."</li>
+						<li style=\"font-size:18px\">Adresse IP actuelle : ".$_SERVER['REMOTE_ADDR']."</li>
 					</ul>
 				</pre>";
 		}

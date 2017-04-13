@@ -56,15 +56,15 @@
 									if(get_rank($_SESSION['name']) > 0){ 
 										if(get_rank($_SESSION['name']) > 2){
 											echo "<li>
-													<a href='".$_SESSION['host']."/admin'>
-														<span class='glyphicon glyphicon-wrench'></span> Administration 
+													<a href=\"".$_SESSION['host']."/admin\">
+														<span class=\"glyphicon glyphicon-wrench\"></span> Administration 
 													</a>
 												</li>";
 											
 										}else{
 											echo "<li>
-													<a href='".$_SESSION['host']."/moderator'>
-														<span class='glyphicon glyphicon-volume-up'></span> Modération
+													<a href=\"".$_SESSION['host']."/moderator\">
+														<span class=\"glyphicon glyphicon-volume-up\"></span> Modération
 													</a>
 												</li>";
 										}

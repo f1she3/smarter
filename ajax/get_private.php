@@ -96,12 +96,12 @@
 					$day = substr($date, 8, 2);
 					$hour = substr($date, 11, 8);
 					$message = bb_decode($message);
-					echo "<span class='name'>
+					echo "<span class=\"name\">
 							<strong>
 								".$sender."
 							</strong>
 						</span> : 
-						<div class='pull-right'>
+						<div class=\"pull-right\">
 							à ".$hour." le ".$day."/".$month."
 						</div>
 						<span>
@@ -129,12 +129,12 @@
 					}
 				
 				}else{
-					echo "<h4 class='text-center'>Aucun message privé ...</h4>";
+					echo "<h4 class=\"text-center\">Aucun message privé ...</h4>";
 				}
 
 			}else{
-				echo "<h4 class='text-center'>
-						<a href='/private&user=".$contact."'>
+				echo "<h4 class=\"text-center\">
+						<a href=\"/private&user=".$contact."\">
 							votre contact n'est plus ami avec vous, veuillez rafraichir la page
 						</a>
 					</h4>";

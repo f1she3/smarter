@@ -11,7 +11,7 @@
 				}
 			}
 			if(is_mute($_SESSION['name'])){
-					echo "<span class='glyphicon glyphicon-volume-off' style='color:red; font-size: 20px'></span><br>";
+					echo "<span class=\"glyphicon glyphicon-volume-off\" style=\"color:red; font-size: 20px\"></span><br>";
 			}
 			$query = mysqli_query($mysqli, "SELECT sender, message, date FROM chat WHERE is_typing = 0 ORDER BY id DESC LIMIT 80");
 			$e = 0;
@@ -21,20 +21,20 @@
 				$hour = substr($m['date'], 11, 8);
 				$m['message'] = bb_decode($m['message']);
 				if($m['sender'] != $_SESSION['name']){
-					echo "<span class='name'>
-							<a href='/private&user=".$m['sender']."' target='_blank'>
+					echo "<span class=\"name\">
+							<a href=\"/private&user=".$m['sender']."\" target=\"_blank\">
 								".$m['sender']."
 							</a>
 						</span>";	
 					
 				}else{ 
-					echo "<span class='name'>
+					echo "<span class=\"name\">
 							<strong>
 								".$m['sender']."
 							</strong>
 						</span>";
 					}
-				echo "<span class='pull-right'>
+				echo "<span class=\"pull-right\">
 						à ".$hour." le ".$day."/".$month."
 					</span>
 					<span> : 
@@ -44,7 +44,7 @@
 			}
 			
 			if($e == 0){
-				echo "<h4 class='text-center'>Aucun message ...</h4>";
+				echo "<h4 class=\"text-center\">Aucun message ...</h4>";
 			}
 	
 		}else{
