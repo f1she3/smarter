@@ -58,11 +58,11 @@
 	// Enf of access right check
 	// Inclusion of several files, the order is important
 	if(is_logged()){
-		$title = $_SESSION['host_name'].' @'.$_SESSION['name']; 
+		$title = 'Smarter @'.$_SESSION['name']; 
 		require 'body/header-2.php';
 
 	}else{
-		$title = $_SESSION['host_name'].' #'.$page;
+		$title = 'Smarter #'.$page;
 		require 'body/header-1.php';
 	}
 	get_flash();

@@ -24,7 +24,7 @@
 						<span class="icon-bar"></span>
                     		</button>
 					<a class="navbar-brand" href="<?= $_SESSION['host'].'/home' ?>">
-						<?= $_SESSION['host_name'] ?>
+						Smarter
 					</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">

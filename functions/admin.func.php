@@ -100,7 +100,7 @@
 					<ul>
 						<li style='font-size:18px'>Nombre de membres : ".$infos['member_count']."</li>
 						<li style='font-size:18px'>Version de PHP : ".$infos['php_version']."</li>
-						<li style='font-size:18px'>Version de MySQL : ".$infos['mysql_version']."</li>
+						<li style='font-size:18px'>Version du serveur SQL : ".$infos['mysql_version']."</li>
 					</ul>
 				</pre>
 			</div>";

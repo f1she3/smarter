@@ -6,7 +6,6 @@
 		session_start();
 		date_default_timezone_set('Europe/Paris');
 		$_SESSION['host'] = '//'.$_SERVER['HTTP_HOST'];
-		$_SESSION['host_name'] = 'Smarter';
 		define('HOST', 'x');
 		define('USER', 'x');
 		define('PASSWORD', 'x');
