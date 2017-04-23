@@ -1,23 +1,36 @@
 <?php
 
 	function set_error($title, $icon, $content, $location){
+			if(!$location){
+				$full_location = $_SESSION['host'];
+			
+			}else{
+				$full_location = $_SESSION['host'].constant('BASE_URL').$location;
+			}
 			if($icon){
-				echo "<h2 class=\"text-center\">".$title."</h2>
-					<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
-					<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
-					<h4 class=\"text-center\">".$content."</h4><hr>
-					<a href=\"".$_SESSION['host']."/".$location."\">
-						<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-					</a>";
+				if($icon == 'error'){
+					echo "<h2 class=\"text-center\">".$title."</h2>
+						<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
+						<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
+						<h4 class=\"text-center\">".$content."</h4><hr>
+						<a href=\"".$full_location."\">
+							<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
+						</a>";
+				}else{
+					echo "<h2 class=\"text-center\">".$title."</h2>
+						<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
+						<h4 class=\"text-center\">".$content."</h4><hr>
+						<a href=\"".$full_location."\">
+							<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
+						</a>";
+				}
 			
 			}else{
 				echo "<h2 class=\"text-center\">".$title."</h2>
-					<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
 					<h4 class=\"text-center\">".$content."</h4><hr>
-					<a href=\"".$_SESSION['host']."/".$location."\">
-						<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
+					<a href=\"".$full_location."\">
+						<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
 					</a>";
-				
 			}
 	}
 	function bb_decode($text){

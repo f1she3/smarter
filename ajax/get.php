@@ -15,30 +15,29 @@
 			}
 			$query = mysqli_query($mysqli, "SELECT sender, message, date FROM chat WHERE is_typing = 0 ORDER BY id DESC LIMIT 80");
 			$e = 0;
-			while($m = mysqli_fetch_assoc($query)){
-				$month = substr($m['date'], 5, 2);
-				$day = substr($m['date'], 8, 2);
-				$hour = substr($m['date'], 11, 8);
-				$m['message'] = bb_decode($m['message']);
-				if($m['sender'] != $_SESSION['name']){
+			while($infos = mysqli_fetch_assoc($query)){
+				$date = date_create($infos['date']);
+				$date = date_format($date, 'G\h i:s, \l\e j/m Y');
+				$infos['message'] = bb_decode($infos['message']);
+				if($infos['sender'] != $_SESSION['name']){
 					echo "<span class=\"name\">
-							<a href=\"/private&user=".$m['sender']."\" target=\"_blank\">
-								".$m['sender']."
+							<a href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$infos['sender']."\" target=\"_blank\">
+								".$infos['sender']."
 							</a>
 						</span>";	
 					
 				}else{ 
 					echo "<span class=\"name\">
 							<strong>
-								".$m['sender']."
+								".$infos['sender']."
 							</strong>
 						</span>";
 					}
 				echo "<span class=\"pull-right\">
-						à ".$hour." le ".$day."/".$month."
+						".$date."
 					</span>
 					<span> : 
-						".$m['message']."
+						".$infos['message']."
 					</span><hr>";
 				$e++;
 			}

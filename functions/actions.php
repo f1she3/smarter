@@ -92,6 +92,9 @@
 			$query = mysqli_prepare($mysqli, 'UPDATE users SET rank = ? WHERE BINARY name = ?');
 			mysqli_stmt_bind_param($query, 'is', $rank, $username);
 			mysqli_stmt_execute($query);
+		
+		}else{
+			return false;
 		}
 	}
 	function set_ban($username, $reason){

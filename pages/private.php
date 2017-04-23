@@ -33,14 +33,14 @@
 						<div class=\"well col-xs-6 col-xs-offset-3 message-box\">
 							<p class=\"text-center\"><b>".bb_decode($ret_is_asked['message'])."</b></p>
 						</div>
-						<form method=\"POST' action='' class='col-xs-4 col-xs-offset-4\">
+						<form method=\"POST\" action=\"\" class=\"col-xs-4 col-xs-offset-4\">
 							<div class=\"pull-left\">
-								<button name=\"accept' class='btn btn-success\">
+								<button name=\"accept\" class=\"btn btn-success\">
 									<img src=\"../css/images/check.png\">
 								</button>
 							</div>
 							<div class=\"pull-right\">
-								<button name=\"refuse' class='btn btn-danger\">
+								<button name=\"refuse\" class=\"btn btn-danger\">
 									<img src=\"../css/images/close.png\">
 								</button>
 							</div>
@@ -98,8 +98,8 @@
 					$ret_friend_answer_2 = friend_answer($_SESSION['name'], $user, 2, 2);
 					$ret_friend_answer_0 = friend_answer($_SESSION['name'], $user, 2, 0);
 					if(empty($ret_attempts_1)){
-						echo "<h2 class=\"text-center\">vous n'êtes pas encore ami avec ".$user."</h2>
-							<h3 class=\"text-center\">Envoyer une demande à ".$user."</h3><hr>
+						echo "<h2 class=\"text-center page-header\">Vous n'êtes pas encore ami avec ".$user."</h2>
+							<h4 class=\"text-center\">Envoyer une demande à ".$user."</h4>
 							<form method=\"POST\" action=\"\">
 								<div class=\"form-group col-md-6 col-md-offset-3\">
 									<label>Message :</label>
@@ -111,45 +111,33 @@
 						 	</form>";
 
 					}else if(empty($ret_friend_answer_1)){
-						echo "<h2 class=\"text-center\">vous n'êtes pas encore ami avec ".$user."</h2>
-							<h4 class=\"text-center\">Demande en attente ...</h4><hr>
-							<a href=\"/contacts\">
-								<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-							</a>";
+						set_error('Vous n\'êtes pas encore ami avec '.$user, 'time', 'Demande en attente ...', 'contacts');
 
 					}else if(!empty($ret_attempts_2)){
 						if(!empty($ret_friend_answer_2)){
-							echo "<h2 class=\"text-center\">vous n'êtes pas encore ami avec ".$user."</h2>
-									<h4 class=\"text-center\">".$user." a refusé vos demandes, mais il peut vous en envoyer une à tout moment</h4><hr>
-									<a href=\"/contacts\">
-										<img src=\"../css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-									</a>";
+							set_error('Vous n\'êtes pas ami avec '.$user.'', 'ban-circle', $user.' a refusé vos demandes, mais il peut vous en envoyer une à tout moment', 'contacts');
 						
 						}else if(!empty($ret_friend_answer_0)){
-							echo "<h2 class=\"text-center\">".$user." n'est pas encore ami avec vous</h2>
-								<h4 class=\"text-center\">Demande en attente ...</h4><hr>
-								<a href=\"/contacts\">
-									<img src=\"../css/images/home.svg' height='75' width='75' class='center-block\">
-								</a>";
+							set_error('Vous n\'êtes pas encore ami avec '.$user, 'time', 'Demande en attente ...', 'contacts');
 						}						
 					
 					}else{
-						echo "<h2 class=\"text-center\">".$user." a refusé votre demande</h2>
-							<h3 class=\"text-center\">Renvoyer une demande à ".$user."</h3>
-							<form method=\"POST' action='\">
+						echo "<h2 class=\"text-center page-header\">".$user." a refusé votre demande</h2>
+							<h4 class=\"text-center\">Renvoyer une demande à ".$user."</h4>
+							<form method=\"POST\" action=\"\">
 								<div class=\"form-group col-md-6 col-md-offset-3\">
 									<label>Message :</label>
-									<textarea name=\"send_req' class='form-control' maxlength='500' autofocus></textarea>
+									<textarea name=\"send_req\" class=\"form-control\" maxlength=\"500\" autofocus></textarea>
 								</div>
 								<div class=\"col-md-6 col-md-offset-3\">
-									<button name=\"send' class='btn btn-primary center-block\">renvoyer</button>
+									<button name=\"send\" class=\"btn btn-primary center-block\">renvoyer</button>
 								</div>
 							</form>";
 					}
 				}
 			
 			}else{
-				set_error('Erreur', false, 'Cet utilisateur n\'existe pas !', 'contacts');
+				set_error('Erreur', 'search', 'Cet utilisateur n\'existe pas !', 'contacts');
 			}
 			
 		}else{

@@ -21,6 +21,24 @@
 			return true;
 		}
 	}
+	function define_url_base($routing_mode){
+		switch($routing_mode){
+			case('DEFAULT'):
+				$base = '/index.php?page=';
+				break;
+			case('DEFAULT_SHORT'):
+				$base = '/?page=';
+				break;
+			case('ROUTER'):
+				$base = '/';
+				break;
+			default:
+				$base = '/index.php?page=';
+				break;
+		}
+		
+		define('BASE_URL', $base);
+	}
 	function redirect($location){
 		if(is_numeric($location)){
 			switch($location){
@@ -41,7 +59,7 @@
 					break;
 			}
 		}
-		header('Location:'.$_SESSION['host'].'/'.$location);
+		header('Location:'.$_SESSION['host'].constant('BASE_URL').$location);
 	}
 	function get_link(){
 		$mysqli = mysqli_connect(constant('HOST'), constant('USER'), constant('PASSWORD'),
