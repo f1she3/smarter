@@ -5,7 +5,6 @@
 		if($user != $_SESSION['name']){
 			if(is_user($user)){
 				if(get_rank($_SESSION['name']) > get_rank($user)){
-					require_once 'functions/actions.php';
 					if(isset($_POST) && !empty($_POST)){
 						if(isset($_POST['submit_mute'])){
 							if(isset($_POST['mute_min']) && !empty($_POST['mute_min'])){
@@ -19,7 +18,7 @@
 												if(isset($_GET['user']) && !empty($_GET['user'])
 													&& is_string($_GET['user'])){
 													set_mute($user, $min, $hour, $day);
-													set_flash('success', "<span class='glyphicon glyphicon-volume-off'></span> <span class='glyphicon glyphicon-ok'></span>");
+													set_flash('success', "<span class=\"glyphicon glyphicon-volume-off\"></span> <span class=\"glyphicon glyphicon-ok\"></span>");
 													redirect('moderator&user='.$user);
 												}
 											}

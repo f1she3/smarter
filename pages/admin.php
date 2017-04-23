@@ -2,7 +2,6 @@
 
 	if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 		$user = $_GET['user'] = secure($_GET['user']);
-		require 'functions/actions.php';
 		if($user != $_SESSION['name']){
 			if(is_user($user)){
 				if(get_rank($_SESSION['name']) > get_rank($user)){

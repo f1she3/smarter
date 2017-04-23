@@ -55,10 +55,10 @@
 			$msg_text = "Message posté : ";
 		}
 		if($ret_user_infos['friend_count'] > 1){
-			$friend_text = "Nombre d'amis : ";
+			$friend_text = "Amis : ";
 		
 		}else{
-			$friend_text = "Nombre d'ami : ";
+			$friend_text = "Ami : ";
 		}
 		// The $flag is a boolean var used to know if we display the infos about 
 		// the current user, or just about another user

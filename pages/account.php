@@ -4,18 +4,16 @@
 		if(!empty($_GET['user'])  && is_string($_GET['user'])){
 			$user = $_GET['user'] = secure($_GET['user']);
 			if($user != $_SESSION['name']){
-				if(get_rank($_SESSION['name']) > get_rank($user)){
-					if(is_user($user)){
-						if(get_rank($_SESSION['name']) >= get_rank($user)){
-							display_user_infos($user, false);
-						
-						}else{
-							set_error('Erreur', false, 'Vous n\'avez pas les droits necessaires !', 'account');
-						}
-						
+				if(is_user($user)){
+					if(get_rank($_SESSION['name']) >= get_rank($user)){
+						display_user_infos($user, false);
+					
 					}else{
-						set_error('Erreur', false, 'Cet utilisateur n\'existe pas !', 'account');
+						set_error('Erreur', 'ban-circle', 'Vous n\'avez pas les droits necessaires !', 'account');
 					}
+					
+				}else{
+					set_error('Erreur', 'search', 'Cet utilisateur n\'existe pas !', 'account');
 				}
 			
 			}else{

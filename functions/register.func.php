@@ -41,4 +41,14 @@
 		$query = mysqli_prepare($mysqli, 'INSERT INTO users (name, email, password, reg_date) VALUES (?, ?, ?, NOW())');
 		mysqli_stmt_bind_param($query, 'sss', $name, $email, $password);
 		mysqli_stmt_execute($query);
+		$query = mysqli_prepare($mysqli, 'SELECT id FROM users WHERE BINARY name = ?');
+		mysqli_stmt_bind_param($query, 's', $name);
+		mysqli_stmt_execute($query);
+		mysqli_stmt_bind_result($query, $id);
+		mysqli_stmt_fetch($query);
+		if($id == 1){
+			$ranks = get_rank_list();
+			set_rank($name, $ranks['max']);
+		
+		}
 	}

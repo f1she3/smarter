@@ -18,7 +18,7 @@
 							if($_POST['n_password'] != $_POST['o_password']){
 								if($ret_check_pass){
 									update_pass($_SESSION['name'], $n_password);
-									set_flash('success', "<span class=\"glyphicon glyphicon-ok'></span> <span class=\"glyphicon glyphicon-lock'></span>");
+									set_flash('success', "<span class=\"glyphicon glyphicon-ok\"></span> <span class=\"glyphicon glyphicon-lock\"></span>");
 									redirect(1);
 
 								}else{
