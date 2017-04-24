@@ -84,11 +84,11 @@
 				</div>
 				<div class="form-group">
 					<label for="n_password">Nouveau mot de passe :</label>
-					<input type="password" name="n_password" class="form-control" id="n_password" placeholder="*********" autofocus="" required>
+					<input type="password" name="n_password" class="form-control" id="n_password" placeholder="*********" required>
 				</div>
 				<div class="form-group">
 					<label for="r_password">Répetez le mot de passe :</label>
-					<input type="password" name="r_password" class="form-control" id="r_password" placeholder="*********" autofocus="" required>
+					<input type="password" name="r_password" class="form-control" id="r_password" placeholder="*********" required>
 				</div>
 				<button name="submit" class="btn btn-primary center-block">Changer</button>
 			</form>
