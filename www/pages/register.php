@@ -2,7 +2,7 @@
 
 	$error = '';
     $style = 'a';
-    if(isset($_POST['reg-submit'])){
+    if(isset($_POST['reg_submit'])){
         $name = $_POST['name'] = secure($_POST['name']);
         $email = $_POST['email'] = secure($_POST['email']);
         $_POST['password'] = secure($_POST['password']);
@@ -25,7 +25,7 @@
                                         if($_POST['password'] == $_POST['r_password']){
                                             if(!$ret_is_used_username){
                                                 if(!$ret_is_used_email){
-													set_flash('success', "<img src='css/images/check.png'><img src='css/images/account.png'>");
+													set_flash('success', "<img src=\"css/images/check.png\"><img src=\"css/images/account.png\">");
 													register($name, $email_hash, $password);
 													$_SESSION['name'] = $name;
 													redirect('chat');
@@ -113,7 +113,7 @@
 					<label for="r_password_reg">Répétez votre mot de passe :</label>
 					<input class="form-control" placeholder="************" name="r_password" type="password" id="r_password_reg" maxlength="60" required>
 				</div>
-				<button name="reg-submit" class="btn btn-success center-block">Inscription</button>
+				<button name="reg_submit" class="btn btn-success center-block">Inscription</button>
 			</form>
 		</div>
 	</div>
