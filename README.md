@@ -3,8 +3,8 @@ Smarter is an open source real time web-chat, based on PHP and using MySQL Javas
 
 ## Installation ##
 ```
-git clone https://github.com/f1she3
+git clone https://github.com/f1she3/smarter.git
 ```
-- Put the content of the www/ directory in your webserver's root
+- Put the content of www/ in your server's root
 - Import the smarter.sql file into your db
 - Add your modifications to the file functions/init.php
