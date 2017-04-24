@@ -7,5 +7,4 @@ git clone https://github.com/f1she3/smarter.git
 ```
 - Put the content of www/ in your server's root
 - Import the file smarter.sql into your database
-- Configure the file functions/init.php with your personal server's
-  configuration
+- Configure the file functions/init.php according to your server's configuration
