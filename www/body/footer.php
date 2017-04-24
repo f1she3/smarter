@@ -5,7 +5,9 @@
 					<div class=\"navbar navbar-fixed-bottom\">
 						<ul class=\"footer-menu\">
 							<li>
-								<a href=\"https://github.com/f1she3/smarter\">Smarter</a> by <a href=\"https://github.com/f1she3\">f1she3</a> |
+								<a href=\"https://github.com/f1she3/smarter\">Smarter</a> by 
+								<a href=\"https://github.com/f1she3\">f1she3</a>, under 
+								<a href=\"https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html\">GPL-2.0</a> |
 								Icons by 
 								<a href=\"http://www.flaticon.com/authors/roundicons\" title=\"Roundicons\">
 									Roundicons
