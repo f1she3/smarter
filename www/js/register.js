@@ -48,7 +48,7 @@ $(document).ready(function(){
 			$(".errors-block").html("<div class=\"alert alert-danger invisible\">a</div>");
 		}
 	})	
-	$("button[name=reg-submit]").click(function(){
+	$("button[name=reg_submit]").click(function(){
 		if($("#name_reg").val() != ""){
 			if($("#email_reg").val() != ""){
 				if($("#password_reg").val() != ""){
@@ -126,7 +126,6 @@ $(document).ready(function(){
 			$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
 										<span class=\"glyphicon glyphicon-exclamation-sign\"></span> veuillez saisir un pseudo\
 									</div>");
-			$("#name_reg").focus();
 			return false;
 		}	
 	}) 
