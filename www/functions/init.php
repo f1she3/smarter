@@ -16,10 +16,10 @@
 		date_default_timezone_set('Europe/Paris');
 		// Root of the server
 		$_SESSION['host'] = '//'.$_SERVER['HTTP_HOST'];
-		define('HOST', 'x');
-		define('USER', 'x');
-		define('PASSWORD', 'x');
-		define('DB_NAME', 'x');
+		define('HOST', '127.0.0.1');
+		define('USER', 'root');
+		define('PASSWORD', '');
+		define('DB_NAME', 'smarter');
 		$mysqli = mysqli_connect(constant('HOST'), constant('USER'), constant('PASSWORD'), constant('DB_NAME'));
 		if(!mysqli_connect_errno()){
 			if(!mysqli_set_charset($mysqli, 'utf8')){
