@@ -95,10 +95,16 @@
 		}
 		echo "</datalist>";
 		$infos = server_infos();
+		if($infos['member_count'] > 1){
+			$text = 'membres';
+		
+		}else{
+			$text = 'membre';
+		}
 		echo "<div class=\"col-md-12\">
 				<pre style=\"border-radius:10px\">
 					<ul>
-						<li style=\"font-size:18px\">Nombre de membres : ".$infos['member_count']."</li>
+						<li style=\"font-size:18px\">Nombre de ".$text." : ".$infos['member_count']."</li>
 						<li style=\"font-size:18px\">Version de PHP : ".$infos['php_version']."</li>
 						<li style=\"font-size:18px\">Version du serveur SQL : ".$infos['mysql_version']."</li>
 					</ul>
