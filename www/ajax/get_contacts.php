@@ -16,29 +16,29 @@
 					$sender = $contact;
 				}	
 				if($validate == 1){
-					echo "<div class='contact'>
-						<form method='post' action='' class='center-block'>
-							<a href='/private&user=".$sender."' class='btn btn-primary contact'>
-								<div class='contact-name'>
+					echo "<div class=\"contact\">
+						<form method=\"post\" action=\"\" class=\"center-block\">
+							<a href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$sender."\" class=\"btn btn-primary contact\">
+								<div class=\"contact-name\">
 									".$sender."
 								</div>
-								<span class='glyphicon glyphicon-user left-icon'></span>
+								<span class=\"glyphicon glyphicon-user left-icon\"></span>
 							</a>
-							<button name='remove' class='btn btn-danger remove-contact'>
-								<span class='glyphicon glyphicon-remove'></span>
+							<button name=\"remove\" class=\"btn btn-danger remove-contact\">
+								<span class=\"glyphicon glyphicon-remove\"></span>
 							</button>
-							<input type='hidden' name='name' value='".$sender."'>
+							<input type=\"hidden\" name=\"name\" value=\".$sender.\">
 						</form>
 					</div>";
 					
 				}else{
-					echo "<div class='contact'>
-						<div class='center-block'>
-							<a class='btn btn-warning' href='/private&user=".$sender."'>
-								<div class='contact-name'>
+					echo "<div class\"contact\">
+						<div class=\"center-block\">
+							<a class=\"btn btn-warning\" href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$sender."\">
+								<div class\contact-name'>
 									".$sender."
 								</div>
-								<span class='glyphicon glyphicon-user left-icon'></span>
+								<span class=\"glyphicon glyphicon-user left-icon\"></span>
 							</a>
 						</div>
 					</div>";
@@ -46,8 +46,8 @@
 				$i++;
 			}
 			if($i == 0){
-				echo "<h3 class='text-center'>Vous n'avez aucun ami pour le moment ...</h3>
-					<p class='text-center'>Vous pouvez ajouter des amis à tout moment en leur envoyant une demande</p>";
+				echo "<h3 class=\"text-center\">Vous n'avez aucun ami</h3>
+					<p class=\"text-center\">Vous pouvez ajouter des amis à tout moment en leur envoyant une demande</p>";
 			}
 		
 		}else{

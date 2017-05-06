@@ -25,10 +25,10 @@
                                         if($_POST['password'] == $_POST['r_password']){
                                             if(!$ret_is_used_username){
                                                 if(!$ret_is_used_email){
-													set_flash('success', "<img src=\"css/images/check.png\"><img src=\"css/images/account.png\">");
-													register($name, $email_hash, $password);
-													$_SESSION['name'] = $name;
-													redirect('chat');
+									set_flash('success', "<img src=\"css/images/check.png\"><img src=\"css/images/account.png\">");
+									register($name, $email_hash, $password);
+									$_SESSION['name'] = $name;
+									redirect('chat');
 
                                                 }else{
                                                     $error = 'cette adresse email est déjà utilisée';

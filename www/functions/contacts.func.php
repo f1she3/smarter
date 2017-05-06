@@ -52,7 +52,7 @@
 			$i++;
 		}
 		if($i == 0){
-			echo "<h3 class=\"text-center\">Vous n'avez aucun ami pour le moment ...</h3>
+			echo "<h3 class=\"text-center\">Vous n'avez aucun ami</h3>
 				<p class=\"text-center\">Vous pouvez ajouter des amis à tout moment en leur envoyant une demande</p>";
 		}
 	}
