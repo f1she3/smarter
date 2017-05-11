@@ -32,10 +32,10 @@
 					</div>";
 					
 				}else{
-					echo "<div class\"contact\">
+					echo "<div class=\"contact\">
 						<div class=\"center-block\">
 							<a class=\"btn btn-warning\" href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$sender."\">
-								<div class\contact-name'>
+								<div class=\"contact-name\">
 									".$sender."
 								</div>
 								<span class=\"glyphicon glyphicon-user left-icon\"></span>

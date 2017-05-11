@@ -76,18 +76,20 @@
 					$ret_attempts_1 = attempts($_SESSION['name'], $user, 1);
 					$ret_attempts_2 = attempts($_SESSION['name'], $user, 2);
 					if(isset($_POST['send'])){
-						if(strlen($_POST['message']) <= 500){
+						if(isset($_POST['send_req']) && !empty($_POST['send_req']) && is_string($_POST['send_req'])){
 							$message = $_POST['send_req'] = secure($_POST['send_req']);
-							if(!empty($message)){
-								if(empty($ret_attempts_1)){
-									new_friend_req($_SESSION['name'], $user, $message, 1);
-									set_flash('success', "<span class=\"glyphicon glyphicon-plus\"></span> <span class=\"glyphicon glyphicon-user\"></span>");
-									redirect('private&user='.$user);
-					
-								}else if(empty($ret_attempts_2)){
-									new_friend_req($_SESSION['name'], $user, $message, 2);
-									set_flash('success', "<span class=\"glyphicon glyphicon-plus\"></span> <span class=\"glyphicon glyphicon-user\"></span>");
-									redirect('private&user='.$user);
+							if(strlen($message) <= 500){
+								if(!empty($message)){
+									if(empty($ret_attempts_1)){
+										new_friend_req($_SESSION['name'], $user, $message, 1);
+										set_flash('success', "<span class=\"glyphicon glyphicon-plus\"></span> <span class=\"glyphicon glyphicon-user\"></span>");
+										redirect('private&user='.$user);
+						
+									}else if(empty($ret_attempts_2)){
+										new_friend_req($_SESSION['name'], $user, $message, 2);
+										set_flash('success', "<span class=\"glyphicon glyphicon-plus\"></span> <span class=\"glyphicon glyphicon-user\"></span>");
+										redirect('private&user='.$user);
+									}
 								}
 							}
 						}

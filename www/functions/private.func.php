@@ -182,7 +182,7 @@
 
 			}else{
 				echo "<h4 class=\"text-center\">
-						<a href=\"/?page=private&user=".$contact."\">
+						<a href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$contact."\">
 							votre contact n'est plus ami avec vous, veuillez rafraichir la page
 						</a>
 					</h4>";
@@ -190,7 +190,7 @@
 
 		}else{
 			echo "<h4 class=\"text-center\">
-					<a href=\"/?page=private&user=".$contact."\">
+					<a href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$contact."\">
 						votre contact n'est plus disponible, veuillez rafraichir la page
 					</a>
 				</h4>";
