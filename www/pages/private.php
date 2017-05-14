@@ -23,25 +23,31 @@
 			$ret_is_user = is_user($user);
 			if($ret_is_user){
 				$ret_is_friend = is_friend($_SESSION['name'], $user);
-				$ret_is_asked = array();
 				$ret_is_asked = is_asked($_SESSION['name'], $user);
 				if(!empty($ret_is_asked['sender']) && !empty($ret_is_asked['message'])){
 					$ret_is_asked['message'] = bb_decode($ret_is_asked['message']);
+					echo "<form method=\"POST\" action=\"\">
+							<div class=\"icon\">
+								<a href=\"".constant('BASE_URL')."block&user=".$user."\" class=\"text-danger\">
+									<span class=\"glyphicon glyphicon-ban-circle text-danger\"></span>
+								</a>
+							</div>
+						</form>";
 					echo "<div class=\"page-header\">
 							<h3 class=\"text-center\">Accepter la demande de ".$ret_is_asked['sender']." ?</h3>
 						</div>
-						<div class=\"well col-xs-6 col-xs-offset-3 message-box\">
+						<div class=\"well col-xs-4 col-xs-offset-4 message-box\">
 							<p class=\"text-center\"><b>".bb_decode($ret_is_asked['message'])."</b></p>
 						</div>
 						<form method=\"POST\" action=\"\" class=\"col-xs-4 col-xs-offset-4\">
-							<div class=\"pull-left\">
+							<div class=\"pull-right\">
 								<button name=\"accept\" class=\"btn btn-success\">
-									<img src=\"../css/images/check.png\">
+									<span class=\"glyphicon glyphicon-ok\"></span>
 								</button>
 							</div>
-							<div class=\"pull-right\">
+							<div class=\"pull-left\">
 								<button name=\"refuse\" class=\"btn btn-danger\">
-									<img src=\"../css/images/close.png\">
+									<span class=\"glyphicon glyphicon-remove\"></span>
 								</button>
 							</div>
 						</form>";
