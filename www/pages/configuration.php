@@ -67,7 +67,7 @@
 ?>
 </div>
 <div class="icon">
-	<a href="/delete">
+	<a href="<?= constant('BASE_URL'); ?>delete">
 		<span class="glyphicon glyphicon-trash"></span>
 	</a>
 </div>
