@@ -72,11 +72,11 @@
 			$type = $_SESSION['flash']['type'];
 			$content = $_SESSION['flash']['content'];
 			$_SESSION['flash']['type'] = $_SESSION['flash']['content'] = '';
-			echo "<span class=\"flash\">
+			echo "<div class=\"flash\" id=\"flash\">
 					<div class=\"alert alert-".$type."\">
 						".$content."
 					</div>
-				</span>";
+				</div>";
 		}
 	}
 	function datalist_options($username, $rank_restriction){
