@@ -1,9 +1,9 @@
 <?php
 
 		/* ROUTING_MODE : 
-		 * DEFAULT : /index.php?page=mypage
-		 * DEFAULT_SHORT : /?page=mypage
-		 * ROUTER : /mypage (requires an additonal webserver configuration)
+		 * DEFAULT : 		/index.php?page=page
+		 * DEFAULT_SHORT : 	/?page=page
+		 * ROUTER : 		/page (requires an additonal webserver configuration)
 		*/ 
 		define('ROUTING_MODE', 'DEFAULT_SHORT');
 		require_once 'app.php';
