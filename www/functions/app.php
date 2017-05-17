@@ -52,7 +52,7 @@
 					$location = 'error404';
 					break;
 				case(3):
-					$page = 'contacts';
+					$location = 'contacts';
 					break;
 				default:
 					$page = 'error404';
