@@ -50,6 +50,21 @@
 			return $result;	
 		}
 	}
+	function is_blocked($current_user, $username){
+		$mysqli = get_link();
+		$query = mysqli_prepare($mysqli, 'SELECT reason FROM blocked WHERE BINARY sender = ? AND BINARY contact = ?');
+		mysqli_stmt_bind_param($query, 'ss', $current_user, $username);
+		mysqli_stmt_execute($query);
+		mysqli_stmt_bind_result($query, $reason);
+		$result = mysqli_stmt_fetch($query);
+		if(empty($result)){
+			return false;
+		
+		}else{
+			$result = $reason;
+			return $result;
+		}
+	}
 	function set_mute($username, $min, $hour, $day){
 		$end = date_create();
 		if($min){

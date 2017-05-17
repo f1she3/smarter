@@ -11,6 +11,11 @@
 	if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 		$user = $_GET['user'] = secure($_GET['user']);
 		if($user != $_SESSION['name']){
+			if(!is_blocked($_SESSION['name'], $user)){
+			
+			}else{
+				redirect('block&user='.$user);
+			}
 			view_req($_SESSION['name'], $user);
 			if(isset($_POST['accept'])){
 				answer_friend_req($_SESSION['name'], $user, 1);

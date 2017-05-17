@@ -6,8 +6,9 @@
 			$reasons[1] = 'Propos déplacés';
 			$reasons[2] = 'Spam';
 			$reasons[3] = 'Autre';
-			echo "<h2 class=\"text-center page-header\">Êtes-vous sûr de vouloir bloquer ".$user."</h2>
-				<div class=\"lead text-center\">".$user." ne pourra plus vous  envoyer de demandes</div>
+			echo "<h2 class=\"text-center\">Bloquer ".$user." ?</h2>
+				<p class=\"text-center\"><span class=\"glyphicon glyphicon-info-sign\"></span> ".$user." ne pourra plus vous  envoyer de demandes</p>
+				<h4 class=\"text-center page-header col-xs-12\">Motif</h4>
 				<form method=\"POST\" action=\"\" class=\"col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4\">
 					<div class=\"radio\">
 						<label>
@@ -23,7 +24,7 @@
 						<label>
 							<input type=\"radio\" name=\"optradio\" value=\"3\">".$reasons[3]."
 						</label>
-					</div>
+					</div><br><br>
 					<div class=\"pull-left\">
 						<button name=\"accept\" class=\"btn btn-success\">
 							Oui <span class=\"glyphicon glyphicon-ok\"></span>
@@ -55,6 +56,7 @@
 				}
 				block($_SESSION['name'], $user, $reason);
 				set_flash('danger', "<span class=\"glyphicon glyphicon-user\"></span><span class=\"glyphicon glyphicon-volume-off\"></span>");
+				redirect(3);
 			
 			}else if(isset($_POST['refuse'])){
 				redirect('private&user='.$user);
