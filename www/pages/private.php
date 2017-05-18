@@ -7,6 +7,7 @@
 	* 1 = friend req accepted
 	* 2 = friend req refused 
 	* 3 = friend removed by the user
+	*
 	*/
 	if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 		$user = $_GET['user'] = secure($_GET['user']);

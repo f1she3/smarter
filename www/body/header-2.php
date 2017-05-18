@@ -43,13 +43,13 @@
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">Mon compte</li>
 								<li><a href="<?= $_SESSION['host'].constant('BASE_URL').'account'?>">
-									<span class="glyphicon glyphicon-question-sign"></span> Informations
+									<span class="glyphicon glyphicon-info-sign"></span> Informations
 								</a></li>
 								<li><a href="<?= $_SESSION['host'].constant('BASE_URL').'contacts' ?>">
 									<span class="glyphicon glyphicon-comment"></span> Amis
 								</a></li>
 								<li><a href="<?= $_SESSION['host'].constant('BASE_URL').'configuration' ?>">
-									<span class="glyphicon glyphicon-cog"></span> Identifiants
+									<span class="glyphicon glyphicon-lock"></span> Identifiants
 								</a></li>
 								<?php
 									

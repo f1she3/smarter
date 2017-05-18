@@ -7,13 +7,13 @@ $(document).ready(function(){
 	});	
 	function show_contacts(){
 		$.post("/ajax/get_contacts.php", function(data){
-			$("#contact_list").html(data);
+			$("#contacts").html(data);
 		});
 	}
 	$("form").submit(function(){
 		input = $("input[type=search]").val();
 		if(input != ""){
-			window.location.href = host + "/private&user=" + input;	
+			window.location.href = host + "private&user=" + input;	
 		}
 
 		return false;
