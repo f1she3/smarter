@@ -8,9 +8,15 @@
 <div class="page-header">
 	<h3 class="text-center">Mes amis</h3>
 </div>
+<div class="icon">
+	<a href="<?= constant('BASE_URL'); ?>block">
+		<span class="glyphicon glyphicon-user"></span>
+		<span class="glyphicon glyphicon-ban-circle"></span>
+	</a>
+</div>
 <form method="POST" action="">
 	<div class="form-group col-md-6 col-md-offset-3">
-		<input list="contacts_list" type="search" name="search" class="form-control" maxlength="25" placeholder="chercher un membre" autofocus>
+		<input list="contacts_list" type="search" name="search" class="form-control" maxlength="25" placeholder="chercher un utilisateur" autofocus>
 	</div>
 </form>
 <input type="hidden" value="<?= $_SESSION['host'].constant('BASE_URL') ?>">
@@ -25,6 +31,6 @@
 	}
 ?>
 </datalist>
-<div id="contacts" class="col-md-6 col-md-offset-3">
+<div id="contacts" class="col-md-6 col-md-offset-3 user-list">
 	<?php	display_contacts($_SESSION['name']); ?>
 </div>

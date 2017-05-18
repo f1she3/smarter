@@ -51,7 +51,7 @@ h6,
 	position: absolute;
 	right: 15px;
 	top: 70px;
-	font-size: 25px;
+	font-size: 20px;
 	text-decoration: none;
 }
 /* Tchat */
@@ -123,6 +123,11 @@ h6,
 }
 #choice{
 	margin-top: 60px;
+}
+.user-list{
+	max-height: 400px;
+	min-height: 430px;
+	overflow-y: auto;
 }
 @media screen and (max-width: 1400px){
 	.flash{

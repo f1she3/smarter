@@ -61,8 +61,7 @@
 			return false;
 		
 		}else{
-			$result = $reason;
-			return $result;
+			return $reason;
 		}
 	}
 	function set_mute($username, $min, $hour, $day){
