@@ -18,7 +18,7 @@
             if(!empty($email)){
                 if(!empty($_POST['password'])){
                     if(!empty($_POST['r_password'])){
-                        if(strlen($name) >= 4){
+                        if(strlen($name) >= 4 && strlen($name) <= 15){
                             if($ret_check_pattern_username){
                                 if($ret_check_pattern_email){
                                     if(strlen($_POST['password']) >= 6){

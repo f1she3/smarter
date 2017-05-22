@@ -15,66 +15,48 @@
 			return false;
 		}
 	}
-	function new_friend_req($sender, $contact, $message, $attempts){
+	function new_friend_req($sender, $contact, $message){
 		$mysqli = get_link();
 		$date = date('d/m Y');
-		$query = mysqli_prepare($mysqli, 'INSERT INTO friends (sender, contact, message, date, attempts) VALUES (?, ?, ?, NOW(), ?)');
-		mysqli_stmt_bind_param($query, 'sssi', $sender, $contact, $message, $attempts);
+		$query = mysqli_prepare($mysqli, 'INSERT INTO friends (sender, contact, message, date) VALUES (?, ?, ?, NOW())');
+		mysqli_stmt_bind_param($query, 'sss', $sender, $contact, $message);
 		mysqli_stmt_execute($query);
 	}
-	function attempts($sender, $contact, $attempts){
+	function is_asked($sender, $contact, $validate){
 		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'SELECT attempts FROM friends WHERE BINARY sender = ? AND BINARY contact = ? AND attempts = ?');
-		mysqli_stmt_bind_param($query, 'ssi', $sender, $contact, $attempts);
-		mysqli_stmt_execute($query);
-		mysqli_stmt_bind_result($query, $r);
-		$result = mysqli_stmt_fetch($query);
-		
-		return $result;
-	}
-	function is_asked($sender, $contact){
-		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'SELECT sender, contact, message FROM friends WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate = 0');
-		mysqli_stmt_bind_param($query, 'ssss', $sender, $contact, $contact, $sender);
-		mysqli_stmt_execute($query);
-		mysqli_stmt_bind_result($query, $s, $c, $m);
-		while(mysqli_stmt_fetch($query)){
-			if($s == $sender){
-				$s = '';
-			}
-		}
-		$result = array(
-			'sender' 	=> $s,
-			'message' 	=> $m
-		);
-		
-		return $result;
-	}
-	function answer_friend_req($sender, $contact, $num){
-		$mysqli = get_link();
-		if($num == 1){
-			// Set attempts to 0 when a friend is accepted, in order to know the exact number of friend an user has, it's impossible to know with multiple attempts
-			$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = ?, attempts = 0 WHERE (BINARY sender = ?
-				OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate != 2 AND (attempts = 1 OR attempts = 2)');
-			mysqli_stmt_bind_param($query, 'issss', $num, $sender, $contact, $contact, $sender);
-			mysqli_stmt_execute($query);
+		if(is_null($validate)){
+			$query = mysqli_prepare($mysqli, 'SELECT sender, contact, message FROM friends WHERE BINARY sender = ? AND BINARY contact = ?');
+			mysqli_stmt_bind_param($query, 'ss', $sender, $contact);
 		
 		}else{
-			$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = ? WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate != 2 AND (attempts = 1 OR attempts = 2)');
-			mysqli_stmt_bind_param($query, 'issss', $num, $sender, $contact, $contact, $sender);
+			$query = mysqli_prepare($mysqli, 'SELECT sender, contact, message FROM friends WHERE BINARY sender = ? AND BINARY contact = ? AND validate = ?');
+			mysqli_stmt_bind_param($query, 'ssi', $sender, $contact, $validate);
+		}
+		mysqli_stmt_execute($query);
+		mysqli_stmt_bind_result($query, $db_sender, $db_contact, $db_message);
+		$i = 0;
+		while(mysqli_stmt_fetch($query)){
+			$i++;	
+		}
+		if($i != 0){
+			$result = array(
+				'sender' 	=> $db_sender,
+				'contact' 	=> $db_contact,
+				'message' 	=> $db_message
+			);
+				
+		}else{
+			$result = false;
+		}
+		
+		return $result;
+	}
+	function answer_friend_req($sender, $contact, $validate){
+		$mysqli = get_link();
+		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = ? WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate != 2');
+			mysqli_stmt_bind_param($query, 'issss', $validate, $sender, $contact, $sender, $contact);
 			mysqli_stmt_execute($query);
 		}
-	}
-	function friend_answer($sender, $contact, $num, $validate){
-		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'SELECT sender FROM friends WHERE (BINARY sender = ? AND BINARY contact = ?) AND attempts = ? AND validate = ?');
-		mysqli_stmt_bind_param($query, 'ssii', $sender, $contact, $num, $validate);
-		mysqli_stmt_execute($query);
-		mysqli_stmt_bind_result($query, $v);
-		while(mysqli_stmt_fetch($query));
-
-		return $v;
-	}	
 	// Views the friend request
 	function view_req($sender, $contact){
 		$mysqli = get_link();
@@ -114,7 +96,7 @@
 			}
 		}
 	}
-	function display_private_chat($user, $contact){
+	function private_messages($user, $contact){
 		$mysqli = get_link();
 		$query = mysqli_prepare($mysqli, 'SELECT name FROM users WHERE BINARY name = ?');
 		mysqli_stmt_bind_param($query, 's', $contact);
@@ -195,6 +177,26 @@
 					</a>
 				</h4>";
 		}
+	}
+	function display_private_chat($sender, $contact){
+		echo "<div class=\"page-header\">
+				<h3 class=\"text-center\">Conversation privée avec ".$contact."</h3>
+			</div>
+			<input type=\"hidden\" id=\"contact_name\" value=".$contact.">
+			<div class=\"messages\">";
+		private_messages($_SESSION['name'], $contact);
+		echo "</div>
+			<form method=\"POST\" action=\"\">
+				<div class=\"form-group col-md-6 col-md-offset-3\">
+					<label>Votre message :</label><br>
+					<textarea class=\"form-control\" name=\"message\" maxlength=\"500\" autofocus></textarea>
+				</div>		
+				<div class=\"col-md-6 col-md-offset-3\">
+					<button name=\"submit\" class=\"btn btn-primary center-block\">
+						Envoyer
+					</button>
+				</div>
+			</form>";
 	}
 	function send_private_message($user, $contact, $message){
 		$mysqli = get_link();

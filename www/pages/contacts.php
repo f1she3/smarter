@@ -1,8 +1,10 @@
 <?php
 	
 	if(isset($_POST['remove'])){
-		$_POST['name'] = secure($_POST['name']);
-		rm_friend($_SESSION['name'], $_POST['name'], $mysqli);
+		if(isset($_POST['name']) && !empty($_POST['name']) && is_string($_POST['name']) && strlen($_POST['name']) <= 15){
+			$_POST['name'] = secure($_POST['name']);
+			rm_friend($_SESSION['name'], $_POST['name']);
+		}
 	}
 ?>
 <div class="page-header">

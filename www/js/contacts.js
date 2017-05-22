@@ -3,7 +3,7 @@ $(document).ready(function(){
 	host = $("input[type=hidden]").val();
 	$("input[type=search]").bind("select", function(){
 		input = $("input[type=search]").val();
-		window.location.href = host + "/private&user=" + input;	
+		window.location.href = host + "private&user=" + input;	
 	});	
 	function show_contacts(){
 		$.post("/ajax/get_contacts.php", function(data){

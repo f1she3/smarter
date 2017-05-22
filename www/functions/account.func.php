@@ -21,7 +21,7 @@
 		$result['private_message_count'] = $e;
 		$result['message_count'] = $i + $e;
 		// Friend counter	
-		$query = mysqli_prepare($mysqli, 'SELECT id FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) AND validate = 1 AND attempts = 0');
+		$query = mysqli_prepare($mysqli, 'SELECT id FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) AND validate = 1');
 		mysqli_stmt_bind_param($query, 'ss', $username, $username);
 		mysqli_stmt_execute($query);
 		$x = 0;
@@ -49,18 +49,18 @@
 		$ret_reg_date = date_create($ret_user_infos['reg_date']);
 		$ret_reg_date = date_format($ret_reg_date, '\l\e j/m Y');
 		if($ret_user_infos['message_count'] > 1){
-			$msg_text = "Messages postés : ";
+			$msg_text = 'Messages postés : ';
 		
 		}else{
-			$msg_text = "Message posté : ";
+			$msg_text = 'Message posté : ';
 		}
 		if($ret_user_infos['friend_count'] > 1){
-			$friend_text = "Amis : ";
+			$friend_text = 'Amis : ';
 		
 		}else{
-			$friend_text = "Ami : ";
+			$friend_text = 'Ami : ';
 		}
-		// The $flag is a boolean var used to know if we display the infos about 
+		// $flag :  boolean var used to know if we display the infos about 
 		// the current user, or just about another user
 		if(!$flag){
 			echo "<div class=\"page-header\">

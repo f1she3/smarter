@@ -23,10 +23,10 @@
 					$x++;
 				}
 				if($x > 0){
-					echo "<a href='/private&user=".$sender."'><span id='plus'>+</span>".$i."</a><input type='hidden' name='hidden_input' value='1'>";
+					echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$i."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
 				
 				}else{
-					echo "<input type='hidden' name='hidden_input'>";
+					echo "<input type=\"hidden\" name=\"hidden_input\">";
 				}
 				
 			}else{
@@ -41,7 +41,7 @@
 					if($i > 9){
 						$i = 9;
 					}
-					echo "<a href='/private&user=".$sender."'><span id='plus'>+</span>".$i."</a><input type='hidden' name='hidden_input' value='1'>";
+					echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$i."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
 			
 				}else{
 					$query = mysqli_prepare($mysqli, 'SELECT contact FROM friends WHERE BINARY sender = ? AND viewed != 2 AND validate = 1');
@@ -56,10 +56,10 @@
 						if($g > 9){
 							$g = 9;
 						}
-						echo "<a href='/private&user=".$sender."'><span id='plus'>+</span>".$g."</a><input type='hidden' name='hidden_input' value='1'>";
+						echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$g."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
 						
 					}else{
-						echo "<input type='hidden' name='hidden_input'>";
+						echo "<input type=\"hidden\" name=\"hidden_input\">";
 					}
 				}
 			}

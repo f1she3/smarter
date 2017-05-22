@@ -2,14 +2,13 @@
 
 	function rm_friend($sender, $contact){
 		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = 3, attempts = 0 WHERE (BINARY sender = ?
-			OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?)');
-		mysqli_stmt_bind_param($query, 'ssss', $sender, $contact, $contact, $sender);
+		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = 3 WHERE (BINARY sender = ? OR BINARY sender = ?) AND
+			(BINARY contact = ? OR BINARY contact = ?)');
+		mysqli_stmt_bind_param($query, 'ssss', $sender, $contact, $sender, $contact);
 		mysqli_stmt_execute($query);
 	}
 	function display_contacts($username){
 		$mysqli = get_link();
-		// Attempts != 0 : when a friend is removed, the attempts field is set to 0, so we don't want to show the removed friends
 		// Validate != 2 : same : when a friend is removed, validate is set to 2
 		$query = mysqli_prepare($mysqli, 'SELECT sender, contact, validate FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) 
 			AND validate != 2 AND validate != 3  ORDER BY validate DESC');
@@ -41,7 +40,7 @@
 				}else{
 					echo "<div class=\"contact\">
 						<div class=\"center-block\">
-							<a class=\"btn btn-warning\" href=\"".$_SESSION['host'].constant('BASE_URL')."private&user=".$sender."\">
+							<a class=\"btn btn-warning\" href=\"".constant('BASE_URL')."private&user=".$sender."\">
 								<div class=\"contact-name\">
 									".$sender."
 								</div>
