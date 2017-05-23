@@ -2,9 +2,9 @@
 
 	function rm_friend($sender, $contact){
 		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = 3 WHERE (BINARY sender = ? OR BINARY sender = ?) AND
-			(BINARY contact = ? OR BINARY contact = ?)');
-		mysqli_stmt_bind_param($query, 'ssss', $sender, $contact, $sender, $contact);
+		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = 3, deleted_by = ? WHERE (BINARY sender = ? OR BINARY sender = ?) AND
+			(BINARY contact = ? OR BINARY contact = ?) AND validate = 1');
+		mysqli_stmt_bind_param($query, 'sssss', $sender, $sender, $contact, $sender, $contact);
 		mysqli_stmt_execute($query);
 	}
 	function display_contacts($username){

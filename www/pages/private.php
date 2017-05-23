@@ -41,12 +41,12 @@
 							<footer class=\"blockquote-footer\"><p>".$user."</p></footer>
 							</blockquote>
 							<form method=\"POST\" action=\"\" class=\"col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4\">
-								<div class=\"pull-right\">
+								<div class=\"pull-left\">
 									<button name=\"accept\" class=\"btn btn-success\">
 										<span class=\"glyphicon glyphicon-ok\"></span>
 									</button>
 								</div>
-								<div class=\"pull-left\">
+								<div class=\"pull-right\">
 									<button name=\"refuse\" class=\"btn btn-danger\">
 										<span class=\"glyphicon glyphicon-remove\"></span>
 									</button>

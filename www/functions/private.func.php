@@ -3,7 +3,8 @@
 	// Checks if the $user and $contact are friends or not
 	function is_friend($user, $contact){
 		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'SELECT contact FROM friends WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate = 1');
+		$query = mysqli_prepare($mysqli, 'SELECT contact FROM friends WHERE (BINARY sender = ? OR BINARY sender = ?) AND 
+			(BINARY contact = ? OR BINARY contact = ?) AND validate = 1');
 		mysqli_stmt_bind_param($query, 'ssss', $user, $contact, $user, $contact);
 		mysqli_stmt_execute($query);
 		mysqli_stmt_bind_result($query, $r);
@@ -29,7 +30,8 @@
 			mysqli_stmt_bind_param($query, 'ss', $sender, $contact);
 		
 		}else{
-			$query = mysqli_prepare($mysqli, 'SELECT sender, contact, message FROM friends WHERE BINARY sender = ? AND BINARY contact = ? AND validate = ?');
+			$query = mysqli_prepare($mysqli, 'SELECT sender, contact, message FROM friends WHERE BINARY sender = ? AND 
+				BINARY contact = ? AND validate = ?');
 			mysqli_stmt_bind_param($query, 'ssi', $sender, $contact, $validate);
 		}
 		mysqli_stmt_execute($query);
@@ -53,10 +55,19 @@
 	}
 	function answer_friend_req($sender, $contact, $validate){
 		$mysqli = get_link();
-		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = ? WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) AND validate != 2');
-			mysqli_stmt_bind_param($query, 'issss', $validate, $sender, $contact, $sender, $contact);
+		$query = mysqli_prepare($mysqli, 'UPDATE friends SET validate = ?, viewed = 2 WHERE (BINARY sender = ? OR BINARY sender = ?) AND (BINARY contact = ? OR BINARY contact = ?) 
+			AND validate = 0');
+		mysqli_stmt_bind_param($query, 'issss', $validate, $sender, $contact, $sender, $contact);
+		mysqli_stmt_bind_param($query, 'issss', $validate, $sender, $contact, $sender, $contact);
+		mysqli_stmt_execute($query);
+		if($validate == 1){
+			$mysqli = get_link();
+			$query = mysqli_prepare($mysqli, 'DELETE FROM friends WHERE (BINARY sender = ? OR BINARY sender = ?) AND 
+				(BINARY contact = ? OR BINARY contact = ?) AND validate != 1');
+			mysqli_stmt_bind_param($query, 'ssss', $sender, $contact, $sender, $contact);
 			mysqli_stmt_execute($query);
 		}
+	}
 	// Views the friend request
 	function view_req($sender, $contact){
 		$mysqli = get_link();
