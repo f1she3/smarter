@@ -1,7 +1,7 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
 		if(is_logged()){
 			if(isset($_POST['contact']) && !empty($_POST['contact'])){
 				$contact = $_POST['contact'] = secure($_POST['contact']);

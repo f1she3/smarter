@@ -28,6 +28,7 @@
 		}
 		if($i === 0){
 			echo "<p class=\"text-center\">Vous n'avez bloqué aucun membre</p>";
+			set_error(false, 'search', false, 'contacts');
 		}
 		echo "</div>";
 	}

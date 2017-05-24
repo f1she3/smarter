@@ -11,8 +11,8 @@
 		$mysqli = get_link();
 		// Validate != 2 : same : when a friend is removed, validate is set to 2
 		$query = mysqli_prepare($mysqli, 'SELECT sender, contact, validate FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) 
-			AND validate != 2 AND validate != 3  ORDER BY validate DESC');
-		mysqli_stmt_bind_param($query, 'ss', $username, $username);
+			AND BINARY deleted_by != ? AND validate != 2 ORDER BY validate DESC');
+		mysqli_stmt_bind_param($query, 'sss', $username, $username, $username);
 		mysqli_stmt_execute($query);
 		mysqli_stmt_bind_result($query, $sender, $contact, $validate);
 		$i = 0;

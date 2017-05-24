@@ -1,9 +1,8 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
 		if(is_logged()){
-			// Attempts != 0 : when a friend is removed, the attempts field is set to 0, so we don't want to show the removed friends
 			// Validate != 2 : same : when a friend is removed, validate is set to 2
 			$query = mysqli_prepare($mysqli, 'SELECT sender, contact, validate FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) 
 				AND BINARY deleted_by != ? AND validate != 2 ORDER BY validate DESC');

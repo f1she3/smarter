@@ -1,8 +1,7 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
-		require_once '../functions/actions.php';
 		if(is_logged()){
 			$query = mysqli_query($mysqli, "SELECT sender FROM chat WHERE is_typing = 1");
 			while($result = mysqli_fetch_assoc($query)){

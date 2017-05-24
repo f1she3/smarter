@@ -1,37 +1,41 @@
 <?php
 
 	function set_error($title, $icon, $content, $location){
-			if(!$location){
-				$full_location = $_SESSION['host'];
+			if($title){
+				$title = "<div class=\"page-header\">
+						<h2 class=\"text-center\">".$title."</h2>
+						</div>";
 			
 			}else{
-				$full_location = $_SESSION['host'].constant('BASE_URL').$location;
+				$title = '';
 			}
 			if($icon){
 				if($icon == 'error'){
-					echo "<h2 class=\"text-center\">".$title."</h2>
-						<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
-						<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
-						<h4 class=\"text-center\">".$content."</h4><hr>
-						<a href=\"".$full_location."\">
-							<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-						</a>";
+					$icon = "<img src=\"../css/images/emojis/e_s.svg\" height=\"40\" width=\"40\" class=\"center-block\">
+						<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>";
+				
 				}else{
-					echo "<h2 class=\"text-center\">".$title."</h2>
-						<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>
-						<h4 class=\"text-center\">".$content."</h4><hr>
-						<a href=\"".$full_location."\">
-							<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-						</a>";
+					$icon = "<h4 class=\"text-center\"><span class=\"glyphicon glyphicon-".$icon."\"></span></h4>";
 				}
 			
 			}else{
-				echo "<h2 class=\"text-center\">".$title."</h2>
-					<h4 class=\"text-center\">".$content."</h4><hr>
-					<a href=\"".$full_location."\">
-						<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
-					</a>";
+				$icon = '';
 			}
+			if($content){
+				$content = 	"<h4 class=\"text-center\">".$content."</h4>";
+			}else{
+				$content = '';
+			}
+			if($location){
+				$location = "<a href=\"".$_SESSION['host'].constant('BASE_URL').$location."\">
+							<img src=\"".$_SESSION['host']."/css/images/home.svg\" height=\"75\" width=\"75\" class=\"center-block\">
+						</a>";
+			
+			}else{
+				$location = '';
+			}
+			
+			echo $title.$icon.$content.$location;
 	}
 	function bb_decode($text){
 		$pattern_1 = '#https?://[a-zA-Z0-9-\.]+\.[a-zA-Z]{2,4}(/\S*)?#';

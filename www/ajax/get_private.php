@@ -1,8 +1,7 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
-		require_once '../functions/get_private.php';
 		if(is_logged()){
 			$contact = $_POST['contact'] = secure($_POST['contact']);
 			$query = mysqli_prepare($mysqli, 'SELECT sender FROM friends WHERE (BINARY sender = ? OR BINARY sender = ?) AND

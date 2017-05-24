@@ -1,8 +1,7 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
-		require_once '../functions/actions.php';
 		if(is_logged()){
 			if(!is_mute($_SESSION['name'])){
 				if(isset($_POST['message']) && !empty($_POST['message']) && strlen($_POST['message']) <= 350){

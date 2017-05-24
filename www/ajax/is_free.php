@@ -1,7 +1,7 @@
 <?php
 
+	require_once '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require_once '../functions/init.php';
 		if(isset($_POST['name']) && !empty($_POST['name']) && strlen($_POST['name']) <= 15){
 			$_POST['name'] = secure($_POST['name']);
 			$query = mysqli_prepare($mysqli, 'SELECT name FROM users WHERE BINARY name = ?');

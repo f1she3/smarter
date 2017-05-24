@@ -1,7 +1,7 @@
 <?php
 
+	require '../functions/init.php';
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-		require '../functions/init.php';
 		if(is_logged()){
 			$query = mysqli_prepare($mysqli, 'SELECT sender FROM private WHERE BINARY contact = ? AND viewed = 0 and is_typing != 1');
 			mysqli_stmt_bind_param($query, 's', $_SESSION['name']);
