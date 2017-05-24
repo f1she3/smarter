@@ -4,7 +4,7 @@
 	// Access right check & redirecting
 	if(isset($_GET['page']) && !empty($_GET['page']) && is_string($_GET['page'])){
 		$page = $_GET['page'] = secure($_GET['page']);
-		// Removes the / of an URL
+		// Remove the / of an URL
 		if(substr($page, 0, 1) == '/'){
 			$page = substr($page, 1);
 		} 
