@@ -6,6 +6,10 @@
 			rm_friend($_SESSION['name'], $_POST['name']);
 		}
 	}
+	if(isset($_POST['search']) && !empty($_POST['search'] && is_string($_POST['search']))){
+		$search = $_POST['search'] = secure($_POST['search']);
+		redirect('private&user='.$search);
+	}
 ?>
 <div class="page-header">
 	<h3 class="text-center">Mes amis</h3>
@@ -18,7 +22,7 @@
 </div>
 <form method="POST" action="">
 	<div class="form-group col-md-6 col-md-offset-3">
-		<input list="contacts_list" type="search" name="search" class="form-control" maxlength="25" placeholder="chercher un utilisateur" autofocus>
+		<input list="contacts_list" type="search" name="search" class="form-control" maxlength="25" placeholder="chercher un utilisateur" autofocus required>
 	</div>
 </form>
 <input type="hidden" value="<?= $_SESSION['host'].constant('BASE_URL') ?>">
@@ -33,6 +37,4 @@
 	}
 ?>
 </datalist>
-<div id="contacts" class="col-md-6 col-md-offset-3 user-list">
-	<?php	display_contacts($_SESSION['name']); ?>
-</div>
+<?php	display_contacts($_SESSION['name']); ?>

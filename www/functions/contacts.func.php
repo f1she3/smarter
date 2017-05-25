@@ -16,6 +16,7 @@
 		mysqli_stmt_execute($query);
 		mysqli_stmt_bind_result($query, $sender, $contact, $validate);
 		$i = 0;
+		echo "<div id=\"contacts\" class=\"col-md-6 col-md-offset-3 user-list\">";
 		while(mysqli_stmt_fetch($query)){
 			if($sender == $username){	
 				$sender = $contact;
@@ -56,4 +57,5 @@
 			echo "<h3 class=\"text-center\">Vous n'avez aucun ami</h3>
 				<p class=\"text-center\">Vous pouvez ajouter des amis à tout moment en leur envoyant une demande</p>";
 		}
+		echo "</div>";
 	}
