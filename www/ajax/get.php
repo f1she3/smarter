@@ -16,7 +16,7 @@
 			$e = 0;
 			while($infos = mysqli_fetch_assoc($query)){
 				$date = date_create($infos['date']);
-				$date = date_format($date, 'G\h i:s, \l\e j/m Y');
+				$date = date_format($date, 'G:i:s, \l\e j/m Y');
 				$infos['message'] = bb_decode($infos['message']);
 				if($infos['sender'] != $_SESSION['name']){
 					echo "<span class=\"name\">
@@ -31,7 +31,8 @@
 								".$infos['sender']."
 							</strong>
 						</span>";
-					}
+				}
+
 				echo "<span class=\"pull-right\">
 						".$date."
 					</span>
