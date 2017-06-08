@@ -133,9 +133,8 @@
 				mysqli_stmt_bind_result($query, $s, $c, $m, $d);
 				$i = 0;
 				while(mysqli_stmt_fetch($query)){
-					$month = substr($d, 5, 2);
-					$day = substr($d, 8, 2);
-					$hour = substr($d, 11, 8);
+					$d = date_create($d);
+					$d = date_format($d, 'G:i:s, \l\e j/m Y');
 					$m = bb_decode($m);
 					echo "<span class=\"name\">
 							<strong>
@@ -143,7 +142,7 @@
 							</strong>
 						</span> : 
 						<div class=\"pull-right\">
-							à ".$hour." le ".$day."/".$month."
+							".$d." 
 						</div>
 						<span>
 							".$m."
