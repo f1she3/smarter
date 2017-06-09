@@ -1,7 +1,7 @@
 ## Smarter ##
 Smarter is an open source real time webchat, where you can publicly chat with
-the other users, or privately chat with your friends. Smarter also has an
-administration and a moderation system that provides a better control over your
+the other users, or privately chat with your friends. Smarter also provides an
+administration and a moderation system that provide a better control over your
 website.
 ### Components ###
 >	#### Backend ####
