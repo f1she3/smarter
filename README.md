@@ -1,7 +1,8 @@
 ## Smarter ##
 Smarter is an open source real time webchat, where you can publicly chat with
-all users, or privately chat with your friends. Smarter also has an
-administration / moderation system in order to provide a better control.
+the other users, or privately chat with your friends. Smarter also has an
+administration and a moderation system that provides a better control over your
+website.
 ### Components ###
 >	#### Backend ####
 >		- PHP / AJAX
@@ -12,7 +13,6 @@ administration / moderation system in order to provide a better control.
 >		- CSS3
 >		- Twitter Bootstrap
 ## Installation ##
-```
 git clone https://github.com/f1she3/smarter.git
 ```
 - Set the directory `www` as your webserver's root
