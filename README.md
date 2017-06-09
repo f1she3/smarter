@@ -13,6 +13,7 @@ website.
 >		- CSS3
 >		- Twitter Bootstrap
 ## Installation ##
+```
 git clone https://github.com/f1she3/smarter.git
 ```
 - Set the directory `www` as your webserver's root
