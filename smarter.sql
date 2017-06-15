@@ -47,6 +47,7 @@ CREATE TABLE `friends` (
   `validate` tinyint(4) NOT NULL DEFAULT '0',
   `attempts` tinyint(4) NOT NULL DEFAULT '0',
   `viewed` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,4 +87,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2017-05-17 06:10:42
+-- 2017-06-15 21:41:05
