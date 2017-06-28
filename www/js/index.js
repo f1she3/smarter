@@ -12,5 +12,5 @@ $(document).ready(function(){
 		})
 	}
 	
-	setInterval(alertMessages, 15000);
+	setInterval(alertMessages, 15000);	
 })

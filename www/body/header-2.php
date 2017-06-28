@@ -22,12 +22,12 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-                    		</button>
+                    			</button>
 					<a class="navbar-brand" href="<?= $_SESSION['host'].constant('BASE_URL').'home' ?>">
 						Smarter
 					</a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
+                		</div>
+                		<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right"> 
 						<li class="<?php echo ($page == 'chat') ? 'active' : '' ?>">
 							<a href="<?= $_SESSION['host'].constant('BASE_URL').'chat' ?>">
