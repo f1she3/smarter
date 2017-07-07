@@ -70,10 +70,10 @@
 		while($result = mysqli_fetch_assoc($query)){
 			$i++;	
 		}
-		$mysql_infos = mysqli_get_server_info($mysqli);
-		$version = phpversion();
-		$result['mysql_version'] = $mysql_infos;
-		$result['php_version'] = $version;
+		$result['mysql_version'] = mysqli_get_server_info($mysqli);
+		$result['php_version'] = phpversion();
+		$result['os_version'] = php_uname('s').' '.php_uname('r');
+		$result['os_version_long'] = php_uname();
 		$result['member_count'] = $i;
 
 		return $result;
@@ -96,17 +96,18 @@
 		echo "</datalist>";
 		$infos = server_infos();
 		if($infos['member_count'] > 1){
-			$text = 'membres';
+			$text = 'Membres';
 		
 		}else{
-			$text = 'membre';
+			$text = 'Membre';
 		}
 		echo "<div class=\"col-md-12\">
 				<pre style=\"border-radius:10px\">
 					<ul>
-						<li style=\"font-size:18px\">Nombre de ".$text." : ".$infos['member_count']."</li>
-						<li style=\"font-size:18px\">Version de PHP : ".$infos['php_version']."</li>
-						<li style=\"font-size:18px\">Version du serveur SQL : ".$infos['mysql_version']."</li>
+						<li style=\"font-size:18px\">".$text." : ".$infos['member_count']."</li>
+						<li style=\"font-size:18px\">PHP : ".$infos['php_version']."</li>
+						<li style=\"font-size:18px\">MySQL : ".$infos['mysql_version']."</li>
+						<li style=\"font-size:18px\">OS : <abbr title=\"".$infos['os_version_long']."\">".$infos['os_version']."</abbr></li>
 					</ul>
 				</pre>
 			</div>";
