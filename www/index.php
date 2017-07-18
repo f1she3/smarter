@@ -22,12 +22,10 @@
 				if($page == 'login' || $page == 'register'){
 					$page = 'error404';
 					$file_type = 'php';
-				
 				}else{
 					if($page == 'admin' && get_rank($_SESSION['name']) < 3){
 						$page = 'error404';
 						$file_type = 'php';
-					
 					}else{
 						if($page == 'moderator' && (get_rank($_SESSION['name'] != (1 | 2)))){
 							$page = 'error404';
@@ -60,7 +58,6 @@
 	if(is_logged()){
 		$title = 'Smarter @'.$_SESSION['name']; 
 		require 'body/header-2.php';
-
 	}else{
 		$title = 'Smarter #'.$page;
 		require 'body/header-1.php';
@@ -79,4 +76,9 @@
 	if(is_logged()){
 		echo "<script src=\"".$_SESSION['host']."/js/index.js\"></script>\n";
 	}
-	require 'body/footer.php';
+	if($page == 'home'){
+		require 'body/footer-1.html';
+	}else{
+		require 'body/footer-2.html';
+		
+	}

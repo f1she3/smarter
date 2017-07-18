@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Open source real time web-based chat">
+		<meta name="description" content="Open source real time web chat">
 		<meta name="author" content="f1she3">
 		<link rel="icon" href="<?= $_SESSION['host'].'/css/images/favicon.ico' ?>">
 		<title><?= $title; ?></title>
@@ -42,7 +42,7 @@
 							</a>
 						</li>
 					</ul>
-				</div><!--/.nav-collapse -->
+				</div>
 			</div>
 		</nav>
 		<div class="container">
