@@ -44,6 +44,6 @@
 				require 'body/header-1.php';
 			}
 			set_error('Erreur', false, '/!\ Erreur lors de la connection à la base de données /!\\', '');
-			require 'body/footer.html';
+			require 'body/footer-1.html';
 			exit(1);
 		}
