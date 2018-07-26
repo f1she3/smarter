@@ -1,53 +1,29 @@
 $(document).ready(function(){
-	var i = 0;
-	get_messages();
-	$("textarea[name=message]").keydown(function(e){
-		if(e.keyCode == 13){
-			if($("textarea[name=message]").val() != ""){
-				$("form").submit();
-			}
-			
+	var socket = io.connect('http://127.0.0.1:8080');
+	// Send a message
+	$('form').submit(function(event){
+		event.preventDefault();
+		var message = $("#message").val();
+		if($("#message").val() === ''){
+			$("#message").focus();
 			return false;
 		}
-	})
-	$("textarea[name=message]").keyup(function(x){
-		if($("textarea[name=message]").val() == ""){
-			if(x.keyCode != 13 && i != 0){
-				i = 0;
-				$.post("/ajax/send.php", {is_typing:1, empty:1}, function(writing){
-					$(".messages").html(writing);
-				})	
-				get_messages();
-			}
-		
-		}else{
-			if(i == 0){
-				$.post("/ajax/send.php", {is_typing:1}, function(writing){
-					$(".messages").html(writing);
-				})	
-				get_messages();
-			}
-			i++;
-		}
-	})
-	$("form").submit(function(){
-		if($("textarea[name=message]").val() != ""){
-			var message = $("textarea[name=message]").val();
-			$.post("/ajax/send.php",{message:message}, function(donnees){
-				$(".messages").html(donnees);
-			});
-			$("textarea[name=message]").val("");	
-		}
-		$("textarea[name=message]").focus();
-		get_messages();
-		
-		return false;
-	})
-	function get_messages(){
-		$.post("/ajax/get.php", function(data){
-			$(".messages").html(data);
+		socket.emit('new_msg', {
+			name	: $("#name").val(),
+			message : $("#message").val()
 		})
-	}
-	
-	setInterval(get_messages, 1000);
+		$('#message').val('');
+		$('#message').focus();
+	})
+	// Get a message
+	socket.on('new_msg', function(message){
+		if(message.mon < 10){
+			message.mon = "0" + message.mon;
+		}
+		$("#public_messages").prepend("<span>" + message.message + "</span><hr>");
+		$("#public_messages").prepend("<div class=\"pull-right\">" + message.h + "h " + message.min + ":" + message.s + ", le " + message.d + "/" + message.mon + " " + message.y + "</span>");
+		$("#public_messages").prepend("<span class=\"name\"><strong>" + message.name + "</strong> : </span>");
+		
+		//alert(message);
+	})
 })
