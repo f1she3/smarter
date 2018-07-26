@@ -27,7 +27,7 @@
 			$i++;
 		}
 		if($i === 0){
-			echo "<p class=\"text-center\">Vous n'avez bloqué aucun membre</p>";
+			echo "<p class=\"text-center\">Vous n'avez bloqué aucun utilisateur</p>";
 			set_error(false, 'search', false, 'contacts');
 		}
 		echo "</div>";
