@@ -69,6 +69,7 @@
 	}
 	require 'pages/'.$page.'.'.$file_type;
 	echo "<script type=\"text/javascript\" src=\"js/flash.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"http://127.0.0.1:8080/socket.io/socket.io.js\"></script>";
 	$pages = scandir('js/');
 	if(in_array($page.'.js',$pages)){
 		echo "<script type=\"text/javascript\" src=\"js/".$page.".js\"></script>\n"; 
