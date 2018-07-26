@@ -5,7 +5,7 @@ administration and a moderation system that provide a better control over your
 website.
 ### Components ###
 >	#### Backend ####
->		- PHP / AJAX
+>		- PHP, NodeJS, socket.io 
 >		- JavaScript + JQuery
 > 		- MySQL
 >	#### Frontend ####
