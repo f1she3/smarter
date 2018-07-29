@@ -1,5 +1,5 @@
 <?php
-
+/*
 	$error = '';
 	$style = 'a';
 	if(isset($_POST['submit'])){
@@ -17,7 +17,7 @@
 						if(check_ids('name', false, $ret_find_name) && check_ids('password', $_POST['password'], $ret_find_name)){
 							$_SESSION['name'] = $ret_find_name;
 							set_flash('success', "<span class='glyphicon glyphicon-user'></span> <span class='glyphicon glyphicon-ok'></span>");
-							redirect(1);
+						redirect(1);
 
 						}else{
 							$error = 'nom d\'utilisateur ou mot de passe incorrect';
@@ -40,11 +40,13 @@
 			$error = 'veuillez saisir votre pseudo';
 		}
 	}
+*/
 ?>
 <h3 class="text-center">Connexion</h3>
 <div class="errors-block col-sm-6 col-sm-offset-3">
 <?php
-	
+
+/*
 	if(!empty($error)){
 		echo "<div class='alert alert-danger text-center'>
 				<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> ".$error."
@@ -54,6 +56,7 @@
 	if(!empty($style)){
 		echo "<div class='alert alert-danger invisible'>".$style."</div>";
 	}
+ */
 ?>
 </div>
 <div class="col-sm-6 col-sm-offset-3">
