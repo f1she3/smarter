@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
@@ -28,14 +28,22 @@
 					</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right"> 
-						<li class="">
+					<ul class="nav navbar-nav navbar-right">
+						<% if(locals.title === 'register'){ %>
+							<li class="active">
+						<% }else{ %>
+							<li>
+						<% } %>
 							<a href="/register">
 								<span class="glyphicon glyphicon-pencil"></span>
 								INSCRIPTION
 							</a>
 						</li>
-						<li class="">
+						<% if(locals.title === 'login'){ %>
+							<li class="active">
+						<% }else{ %>
+							<li>
+						<% } %>
 							<a href="/login">
 								<span class="glyphicon glyphicon-user"></span>
 								CONNEXION
