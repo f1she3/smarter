@@ -9,22 +9,24 @@
 		<div class="panel-body">
 			<form method="POST" action="">
 				<div class="form-group">
-					<label for="name_reg">Votre nom d'utilisateur :</label>
-					<input class="form-control" placeholder="4 caractères minimum" name="name" type="text" id="name_reg" maxlength="15" autofocus required>
+					<label for="name">Votre nom d'utilisateur :</label>
+					<input type="text" class="form-control" placeholder="4 caractères minimum" name="name" id="name" maxlength="15" autofocus required>
 				</div>
 				<div class="form-group">
-					<label for="email_reg">Votre adresse email :</label>
-					<input class="form-control" placeholder="me@example.com" name="email" type="email" id="email_reg" maxlength="40" required>
+					<label for="email">Votre adresse email :</label>
+					<input type="email" class="form-control" placeholder="me@example.com" name="email" id="email" maxlength="40" required>
 				</div>
 				<div class="form-group">
 					<label for="password_reg">Votre mot de passe :</label>
-					<input class="form-control" placeholder="6 caractères minimum" name="password" type="password" id="password_reg" maxlength="60" required>
+					<input type="password" class="form-control" placeholder="6 caractères minimum" name="password" id="password" maxlength="60" required>
 				</div>
 				<div class="form-group">
-					<label for="r_password_reg">Répétez votre mot de passe :</label>
-					<input class="form-control" placeholder="************" name="r_password" type="password" id="r_password_reg" maxlength="60" required>
+					<label for="rPassword">Répétez votre mot de passe :</label>
+					<input type="password" class="form-control"
+					placeholder="************"
+					name="rPassword" id="rPassword" maxlength="60" required>
 				</div>
-				<button name="reg_submit" class="btn btn-success center-block">Inscription</button>
+				<button name="submit" class="btn btn-success center-block">Inscription</button>
 			</form>
 		</div>
 	</div>
