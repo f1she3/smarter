@@ -22,7 +22,7 @@ module.exports = function(app){
 						});
 					}
 				}else{
-					
+					routeRes.redirect('/login');
 				}
 				
 		});
