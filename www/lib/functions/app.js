@@ -5,15 +5,15 @@ module.exports = getCon = function(callback){
 		host: '127.0.0.1',
 		user: 'root',
 		password: '',
-		database: '',
+		database: 'smarter',
 		debug: false
 	});
 	pool.getConnection((error, connection) => {
 		callback(error, connection);
 	});
 }, loadFunc = function(pageName){
-	var path = require('path');
+	let path = require('path');
 	pageName = pageName.substr(1);
-	var mainDir = path.dirname(require.main.filename);
+	let mainDir = path.dirname(require.main.filename);
 	require(path.join(mainDir, 'lib', 'functions', pageName + '.func.js'));
 }

@@ -1,26 +1,26 @@
 module.exports = isUsed = function(name, email, callback){
+	let crypto = require('crypto');
 	return getCon((err, con) => {
 		if(err){
-			var errObj = new Error(err.code);
+			let errObj = new Error(err.code);
 			errObj.name = 'server';
 
 			return callback(errObj, false);
 		}
 		return con.query('SELECT id FROM users WHERE BINARY name  = ?', [name], (dbError, dbResult) => {
 			if(dbError){
-				var errObj = new Error(dbError.code);
+				let errObj = new Error(dbError.code);
 				errObj.name = 'server';
 
 				return callback(errObj, false);
 			// Valid username
 			}
 			if(dbResult.length === 0){
-				var crypto = require('crypto');
-				var shasum = crypto.createHash('sha512');
+				let shasum = crypto.createHash('sha512');
 				emailHash = shasum.update(email).digest('hex');
 				return con.query('SELECT id From users WHERE email = ?', [emailHash], (dbErr, dbRes) => {
 					if(dbErr){
-						var errObj = new Error(dbErr.code);
+						let errObj = new Error(dbErr.code);
 						errObj.name = 'server';
 
 						return callback(errObj, false);
@@ -47,6 +47,10 @@ module.exports = isUsed = function(name, email, callback){
 		return callback(false, true);
 	}
 },register = function(name, email, password, repeatPassword, callback){
+	// Password
+	let bcrypt = require('bcrypt');
+	// SHA-512 (email)
+	let crypto = require('crypto');
 	if(name === undefined){
 		return callback(new Error('Please enter a username'), false);
 	}
@@ -70,7 +74,7 @@ module.exports = isUsed = function(name, email, callback){
 	}
 	return getCon((dbErr, dbCon) => {
 		if(dbErr){
-			var errObj = new Error(dbErr.code);
+			let errObj = new Error(dbErr.code);
 			errObj.name = 'server';
 
 			return callback(errObj, false);
@@ -83,31 +87,29 @@ module.exports = isUsed = function(name, email, callback){
 				if(err){
 					return callback(err, false);
 				}
-				var bcrypt = require('bcrypt');
 				return bcrypt.hash(password, 10, (passErr, hash) => {
 					if(passErr){
-						var errObj = new Error(passErr.code);
+						let errObj = new Error(passErr.code);
 						errObj.name = 'server';
 
 						return callback(errObj, false);
 					}
-					var crypto = require('crypto');
-					var shasum = crypto.createHash('sha512');
+					let shasum = crypto.createHash('sha512');
 					emailHash = shasum.update(email).digest('hex');
 					return dbCon.query('INSERT INTO users (name, email, password, reg_date) VALUES (?, \
 						?, ?, NOW())', [name, emailHash, hash], (queryError, dbResult) => {
 						if(queryError){
-							var errObj = new Error(queryError.code);
+							let errObj = new Error(queryError.code);
 							errObj.name = 'server';
 
 							return callback(errObj, false);
 						}else{
 							return callback(false, true);
 						}
-					})
-				})
-			})
-		})
+					});
+				});
+			});
+		});
 		dbCon.release();
-	})
+	});
 };
