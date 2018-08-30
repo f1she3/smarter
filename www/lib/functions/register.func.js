@@ -1,4 +1,4 @@
-module.exports = isUsed = function(name, callback){
+module.exports = isUsed = function(username, callback){
 	let crypto = require('crypto');
 	return getCon((err, con) => {
 		if(err){
@@ -8,8 +8,8 @@ module.exports = isUsed = function(name, callback){
 			return callback(errObj, false);
 		}
 		let shasum = crypto.createHash('sha512');
-		nameHash = shasum.update(name).digest('hex');
-		return con.query('SELECT id FROM users WHERE BINARY name  = ?', [nameHash], (dbError, dbResult) => {
+		let usernameHash = shasum.update(username).digest('hex');
+		return con.query('SELECT id FROM users WHERE BINARY username  = ?', [usernameHash], (dbError, dbResult) => {
 			if(dbError){
 				let errObj = new Error(dbError.code);
 				errObj.name = 'server';
@@ -24,22 +24,22 @@ module.exports = isUsed = function(name, callback){
 			}
 		});
 	});
-},checkFormats = function(name, callback){
-	namePattern = new RegExp(/^[a-zA-Z0-9_@[\]éè-]+$/);
-	if(!namePattern.test(name)){
+},checkFormats = function(username, callback){
+	usernamePattern = new RegExp(/^[a-zA-Z0-9_@[\]éè-]+$/);
+	if(!usernamePattern.test(username)){
 		return callback(new Error('Username not valid'), false);
 	}else{
 		return callback(false, true);
 	}
-},register = function(name, password, repeatPassword, callback){
+},register = function(username, password, repeatPassword, callback){
 	// Password
 	let bcrypt = require('bcrypt');
 	// SHA-512
 	let crypto = require('crypto');
-	if(name === undefined){
+	if(username === undefined){
 		return callback(new Error('Please enter a username'), false);
 	}
-	if(name.length < 4){
+	if(username.length < 4){
 		return callback(new Error('Your username must be at least 4 chars long'), false);
 	}
 	if(password === undefined){
@@ -61,11 +61,11 @@ module.exports = isUsed = function(name, callback){
 
 			return callback(errObj, false);
 		}
-		return checkFormats(name, (error, result) => {
+		return checkFormats(username, (error, result) => {
 			if(error){
 				return callback(error, result);
 			}
-			return isUsed(name, (err, res) => {
+			return isUsed(username, (err, res) => {
 				if(err){
 					return callback(err, false);
 				}
@@ -77,9 +77,9 @@ module.exports = isUsed = function(name, callback){
 						return callback(errObj, false);
 					}
 					let shasum = crypto.createHash('sha512');
-					nameHash = shasum.update(name).digest('hex');
-					return dbCon.query('INSERT INTO users (name, password, reg_date) VALUES (?, \
-						?, NOW())', [nameHash, hash], (queryError, dbResult) => {
+					let usernameHash = shasum.update(username).digest('hex');
+					return dbCon.query('INSERT INTO users (username, password, regDate) VALUES (?, \
+						?, NOW())', [usernameHash, hash], (queryError, dbResult) => {
 						if(queryError){
 							let errObj = new Error(queryError.code);
 							errObj.name = 'server';

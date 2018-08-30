@@ -6,9 +6,9 @@ router.get('/', (request, response) => {
 });
 router.post('/', (request, response) => {
 	loadFunc(request.originalUrl);
-	let name = request.body.name;
+	let username = request.body.username;
 	let password = request.body.password;
-	authCheck(name, password, (error, result) => {
+	authCheck(username, password, (error, result) => {
 		if(error){
 			if(error.name === 'server'){
 				request.flash(error.name, error.message);
@@ -19,7 +19,7 @@ router.post('/', (request, response) => {
 			}
 		}else{
 			request.flash('success', 'Logged');
-			request.session.name = name;
+			request.session.username = username;
 			response.redirect('/chat');
 		}
 	});

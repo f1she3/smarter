@@ -16,7 +16,7 @@ router.get('/*', (request, response, next) => {
 					// No view / route exists 
 					if(err){
 						request.flash('404', "The page you are looking for doesn't exist");
-						if(request.session.name === undefined){
+						if(request.session.username === undefined){
 							response.render('pages/error', {
 								home: true,
 								redirect: '/login',
@@ -31,7 +31,7 @@ router.get('/*', (request, response, next) => {
 						}
 					// A view exists
 					}else{
-						if(request.session.name !== undefined){
+						if(request.session.username !== undefined){
 							response.locals.session = true;
 							if(notLoggedPages.indexOf(pageName) !== -1){
 								response.locals.title = 'chat';
@@ -55,7 +55,7 @@ router.get('/*', (request, response, next) => {
 				});
 			}
 		}else{
-			if(request.session.name !== undefined){
+			if(request.session.username !== undefined){
 				response.locals.session = true;
 				if(notLoggedPages.indexOf(pageName) !== -1){
 					response.locals.title = 'chat';
@@ -80,7 +80,7 @@ router.get('/*', (request, response, next) => {
 });
 router.post('/*', (request, response, next) => {
 	let pageName = request.originalUrl.substr(1);
-	if(request.session.name !== undefined){
+	if(request.session.username !== undefined){
 		if(notLoggedPages.indexOf(pageName) !== -1){
 			console.log("auth user can't access this page");
 			request.flash('404', "The page you are looking for doesn't exist");

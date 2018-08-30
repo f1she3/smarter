@@ -1,5 +1,6 @@
 module.exports = authCheck = function(username, password, callback){
 	let bcrypt = require('bcrypt');
+	let crypto = require('crypto');
 	return getCon((error, connection) =>{
 		if(error){
 			let errObj = new Error(error.code);
@@ -7,7 +8,9 @@ module.exports = authCheck = function(username, password, callback){
 
 			return callback(errObj, false);
 		}
-		connection.query('SELECT password FROM users WHERE BINARY name = ?', [username], function(err, dbRes, fields){
+		let shasum = crypto.createHash('sha512');
+		let usernameHash = shasum.update(username).digest('hex');
+		connection.query('SELECT password FROM users WHERE BINARY username = ?', [usernameHash], function(err, dbRes, fields){
 			if(err){
 				if(callback !== undefined){
 					let errObj = new Error(err.code);

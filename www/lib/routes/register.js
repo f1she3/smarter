@@ -6,10 +6,10 @@ router.get('/', (request, response) => {
 });
 router.post('/', (request, response) => {
 	loadFunc(request.originalUrl);
-	let name = request.body.name;
+	let username = request.body.username;
 	let password = request.body.password;
 	let rPassword = request.body.rPassword;
-	register(name, password, rPassword, (error, result) => {
+	register(username, password, rPassword, (error, result) => {
 		if(error){
 			if(error.name === 'server'){
 				console.log(error);
@@ -20,7 +20,7 @@ router.post('/', (request, response) => {
 				response.render('pages/register', {title: 'register'});
 			}
 		}else{
-			request.session.name = name;
+			request.session.username = username;
 			response.redirect('/chat');
 		}
 	});
