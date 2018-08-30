@@ -2,7 +2,7 @@
   "name": "smarter",
   "version": "2.0.0",
   "description": "Open source real time web-chat",
-  "main": "www/js/server.js",
+  "main": "www/js/index.js",
   "dependencies": {
     "bcrypt": "^3.0.0",
     "connect-redis": "^3.3.3",

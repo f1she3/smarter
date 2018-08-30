@@ -1,4 +1,4 @@
-module.exports = isUsed = function(name, email, callback){
+module.exports = isUsed = function(name, callback){
 	let crypto = require('crypto');
 	return getCon((err, con) => {
 		if(err){
@@ -7,58 +7,40 @@ module.exports = isUsed = function(name, email, callback){
 
 			return callback(errObj, false);
 		}
-		return con.query('SELECT id FROM users WHERE BINARY name  = ?', [name], (dbError, dbResult) => {
+		let shasum = crypto.createHash('sha512');
+		nameHash = shasum.update(name).digest('hex');
+		return con.query('SELECT id FROM users WHERE BINARY name  = ?', [nameHash], (dbError, dbResult) => {
 			if(dbError){
 				let errObj = new Error(dbError.code);
 				errObj.name = 'server';
 
 				return callback(errObj, false);
-			// Valid username
 			}
+			// Valid username
 			if(dbResult.length === 0){
-				let shasum = crypto.createHash('sha512');
-				emailHash = shasum.update(email).digest('hex');
-				return con.query('SELECT id From users WHERE email = ?', [emailHash], (dbErr, dbRes) => {
-					if(dbErr){
-						let errObj = new Error(dbErr.code);
-						errObj.name = 'server';
-
-						return callback(errObj, false);
-					}
-					if(dbRes.length === 0){
-						return callback(false, true);
-					}else{
-						return callback(new Error('This email address is already used'), false);
-					}
-				});
+				return callback(false, true);
 			}else{
 				return callback(new Error('This username is already used'), false);
 			}
 		});
 	});
-},checkFormats = function(name, email, callback){
+},checkFormats = function(name, callback){
 	namePattern = new RegExp(/^[a-zA-Z0-9_@[\]éè-]+$/);
-	emailPattern = new RegExp(/^[a-z0-9._-]+@[a-z0-9._-]{2,20}\.[a-z]{2,4}$/);
 	if(!namePattern.test(name)){
 		return callback(new Error('Username not valid'), false);
-	}else if(!emailPattern.test(email)){
-		return callback(new Error('Email address not valid'), false);
 	}else{
 		return callback(false, true);
 	}
-},register = function(name, email, password, repeatPassword, callback){
+},register = function(name, password, repeatPassword, callback){
 	// Password
 	let bcrypt = require('bcrypt');
-	// SHA-512 (email)
+	// SHA-512
 	let crypto = require('crypto');
 	if(name === undefined){
 		return callback(new Error('Please enter a username'), false);
 	}
 	if(name.length < 4){
 		return callback(new Error('Your username must be at least 4 chars long'), false);
-	}
-	if(email === undefined){
-		return callback(new Error('Please enter an email address'), false);
 	}
 	if(password === undefined){
 		return callback(new Error('Please enter a password'), false);
@@ -79,11 +61,11 @@ module.exports = isUsed = function(name, email, callback){
 
 			return callback(errObj, false);
 		}
-		return checkFormats(name, email, (error, result) => {
+		return checkFormats(name, (error, result) => {
 			if(error){
 				return callback(error, result);
 			}
-			return isUsed(name, email, (err, res) => {
+			return isUsed(name, (err, res) => {
 				if(err){
 					return callback(err, false);
 				}
@@ -95,9 +77,9 @@ module.exports = isUsed = function(name, email, callback){
 						return callback(errObj, false);
 					}
 					let shasum = crypto.createHash('sha512');
-					emailHash = shasum.update(email).digest('hex');
-					return dbCon.query('INSERT INTO users (name, email, password, reg_date) VALUES (?, \
-						?, ?, NOW())', [name, emailHash, hash], (queryError, dbResult) => {
+					nameHash = shasum.update(name).digest('hex');
+					return dbCon.query('INSERT INTO users (name, password, reg_date) VALUES (?, \
+						?, NOW())', [nameHash, hash], (queryError, dbResult) => {
 						if(queryError){
 							let errObj = new Error(queryError.code);
 							errObj.name = 'server';
