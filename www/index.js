@@ -48,26 +48,9 @@ fs.readdir('lib/routes', (error, files) => {
 	}
 });
 
-// Global app routing
-
 app.get('/', (request, response) => {
 	response.redirect('/login');
 });
-app.get('/*', (request, response, next) => {
-	// Remove openning slash
-	let pageName = request.originalUrl.substr(1);
-	// 404 check
-	fs.access('views/pages/' + pageName + '.ejs', (err) => {
-		if(err){
-			response.render('pages/error', {
-				errorType: '404',
-				errorMsg: "This page doesn't exist",
-				home: true
-			});
-		}else{
-			// Set the page's title
-			response.locals.title = pageName;
-			next();
-		}
-	})
-})
+
+// Global hook routes
+app.use('/*', require(path.join(__dirname, 'lib', 'routes', 'globalHook')));
