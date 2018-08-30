@@ -18,7 +18,7 @@
 						<a href="http://www.flaticon.com" title="Flaticon">
 							flaticon.com
 						</a> 
-						licensed by 
+						licensed by
 						<a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">
 							CC 3.0 BY
 						</a>
@@ -26,5 +26,10 @@
 				</ul>
 			</div>
 		</footer>
+		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+		<% if(locals.jsPage){ %>
+			<script type="text/javascript" src="assets/js/<%= jsPage %>.js"></script>
+		<% } %>
 	</body>
 </html>
