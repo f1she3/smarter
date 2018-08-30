@@ -48,9 +48,5 @@ fs.readdir('lib/routes', (error, files) => {
 	}
 });
 
-app.get('/', (request, response) => {
-	response.redirect('/login');
-});
-
 // Global hook routes
 app.use('/*', require(path.join(__dirname, 'lib', 'routes', 'globalHook')));

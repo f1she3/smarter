@@ -7,6 +7,17 @@ let notLoggedPages = ['login', 'register'];
 // Pages not visible by not logged users
 let loggedPages = ['chat'];
 router.get('/*', (request, response, next) => {
+	if(request.originalUrl === '/'){
+		if(request.session.username === undefined){
+			response.redirect('/login');
+
+			return;
+		}else{
+			response.redirect('/chat');
+
+			return;
+		}
+	}
 	// Remove openning slash
 	let pageName = request.originalUrl.substr(1);
 	fs.access('lib/routes/' + pageName + '.js', (error) => {
