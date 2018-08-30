@@ -1,4 +1,9 @@
+<% if(locals.session) { %>
+<% include ../body/header-2 %>
+<% }else{ %>
 <% include ../body/header-1 %>
+<% } %>
+
 <div class="page-header">
 	<h1 class="text-center">Bienvenue sur Smarter !</h1>
 </div>
@@ -15,4 +20,5 @@ Smarter est un <b>chat temps réel</b> <a
 	identifiants existants.
 </p>
 <h2 class="text-center">Bonne navigation !</h2>
+
 <% include ../body/footer-1.html %>

@@ -1,8 +1,8 @@
-<% if(locals.message) { %>
+<% if(locals.flashType && locals.flash) { %>
 	<div class="col-sm-6 col-sm-offset-3">
-		<div class="alert alert-<%= messageType %> text-center">
+		<div class="alert alert-<%= locals.flashType %> text-center">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<%= locals.message %>
+			<%= locals.flash %>
 		</div>
 	</div>
 <% } %>

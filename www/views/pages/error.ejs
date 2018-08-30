@@ -1,18 +1,26 @@
+<% if(locals.session) { %>
+<% include ../body/header-2 %>
+<% }else{ %>
 <% include ../body/header-1 %>
+<% } %>
 
 <div class="page-header">
 		<h2 class="text-center">
 			Error
-			<%= locals.name %>
+			<%= locals.flashType %>
 		</h2>
 </div>
 <h4 class="text-center">
-	<%= locals.message %>
+	<%= locals.flash %>
 </h4>
 <% if(locals.home){ %>
-<a href="/home">
-	<img src="/assets/css/images/home.svg" height="75" width="75" class="center-block">
-</a>
+	<% if(locals.redirect) { %>
+		<a href="<%= locals.redirect %>">
+	<% }else{ %>
+		<a href="/home">
+	<% } %>
+		<img src="/assets/css/images/home.svg" height="75" width="75" class="center-block">
+	</a>
 <% } %>
 
 <% include ../body/footer-1.html %>
