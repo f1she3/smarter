@@ -18,75 +18,83 @@ router.get('/*', (request, response, next) => {
 			return;
 		}
 	}
-	// Remove openning slash
 	let pageName = request.originalUrl.substr(1);
-	fs.access('lib/routes/' + pageName + '.js', (error) => {
-		if(error){
-			if(pageName !== 'favicon.ico'){
-				fs.access('views/pages/' + pageName + '.ejs', (err) => {
-					// No view / route exists 
-					if(err){
-						request.flash('404', "The page you are looking for doesn't exist");
-						if(request.session.username === undefined){
-							response.render('pages/error', {
-								home: true,
-								redirect: '/login',
-								session: false
-							});
+	// Remove openning slash
+	fs.access('public/js/' + pageName + '.js', (exists) => {
+		if(pageName === 'favicon.ico'){
+			return;	
+		}
+		if(!exists){
+			response.locals.jsPage = pageName;
+		}
+		fs.access('lib/routes/' + pageName + '.js', (error) => {
+			if(error){
+				//if(pageName !== 'favicon.ico'){
+					fs.access('views/pages/' + pageName + '.ejs', (err) => {
+						// No view / route exists 
+						if(err){
+							request.flash('404', "The page you are looking for doesn't exist");
+							if(request.session.username === undefined){
+								response.render('pages/error', {
+									home: true,
+									redirect: '/login',
+									session: false
+								});
+							}else{
+								response.render('pages/error', {
+									home: true,
+									redirect: '/chat',
+									session: true
+								});
+							}
+						// A view exists
 						}else{
-							response.render('pages/error', {
-								home: true,
-								redirect: '/chat',
-								session: true
-							});
-						}
-					// A view exists
-					}else{
-						if(request.session.username !== undefined){
-							response.locals.session = true;
-							if(notLoggedPages.indexOf(pageName) !== -1){
-								response.locals.title = 'chat';
-								response.redirect('/chat');
+							if(request.session.username !== undefined){
+								response.locals.session = true;
+								if(notLoggedPages.indexOf(pageName) !== -1){
+									response.locals.title = 'chat';
+									response.redirect('/chat');
+
+									return;
+								}
+							}else if(loggedPages.indexOf(pageName) !== -1){
+								response.locals.session = false;
+								request.flash('404', "The page you are looking for doesn't exist");
+								response.render('pages/error', {
+									home: true,
+									redirect: '/login'
+								});
 
 								return;
 							}
-						}else if(loggedPages.indexOf(pageName) !== -1){
-							response.locals.session = false;
-							request.flash('404', "The page you are looking for doesn't exist");
-							response.render('pages/error', {
-								home: true,
-								redirect: '/login'
-							});
-
-							return;
+							response.locals.title = pageName;
+							response.render('pages/' + pageName);
 						}
-						response.locals.title = pageName;
-						response.render('pages/' + pageName);
+					});
+			//	}
+			}else{
+				if(request.session.username !== undefined){
+					response.locals.session = true;
+					if(notLoggedPages.indexOf(pageName) !== -1){
+						response.locals.title = 'chat';
+						response.redirect('/chat');
+
+						return;
 					}
-				});
-			}
-		}else{
-			if(request.session.username !== undefined){
-				response.locals.session = true;
-				if(notLoggedPages.indexOf(pageName) !== -1){
-					response.locals.title = 'chat';
-					response.redirect('/chat');
+				}else if(loggedPages.indexOf(pageName) !== -1){
+					response.locals.session = false;
+					request.flash('404', "The page you are looking for doesn't exist");
+					response.render('pages/error', {
+						home: true,
+						redirect: '/login'
+					});
 
 					return;
 				}
-			}else if(loggedPages.indexOf(pageName) !== -1){
-				response.locals.session = false;
-				request.flash('404', "The page you are looking for doesn't exist");
-				response.render('pages/error', {
-					home: true,
-					redirect: '/login'
-				});
-
-				return;
+				response.locals.title = pageName;
+				next();
 			}
-			response.locals.title = pageName;
-			next();
-		}
+		});
 	});
 });
 router.post('/*', (request, response, next) => {

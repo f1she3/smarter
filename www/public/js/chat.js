@@ -1,22 +1,21 @@
 $(document).ready(function(){
-	var socket = io.connect('http://127.0.0.1:8080');
+	let socket = io();
 	// Send a message
 	$('form').submit(function(event){
 		event.preventDefault();
-		var message = $('#message').val();
+		let message = $('#message').val();
 		if($('#message').val() === ''){
 			$('#message').focus();
 			return false;
 		}
-		socket.emit('new_msg', {
-			name	: $('#name').val(),
+		socket.emit('postNewMsg', {
 			message : $('#message').val()
 		})
 		$('#message').val('');
 		$('#message').focus();
 	})
 	// Get a message
-	socket.on('new_msg', function(message){
+	socket.on('getNewMsg', function(message){
 		if(message.mon < 10){
 			message.mon = '0' + message.mon;
 		}
