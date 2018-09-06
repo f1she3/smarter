@@ -5,7 +5,7 @@ module.exports = isUsed = function(username, callback){
 			let errObj = new Error(err.code);
 			errObj.name = 'server';
 
-			return callback(errObj, false);
+			return callback(errObj);
 		}
 		let shasum = crypto.createHash('sha512');
 		let usernameHash = shasum.update(username).digest('hex');
@@ -14,22 +14,23 @@ module.exports = isUsed = function(username, callback){
 				let errObj = new Error(dbError.code);
 				errObj.name = 'server';
 
-				return callback(errObj, false);
+				return callback(errObj);
 			}
 			// Valid username
 			if(dbResult.length === 0){
-				return callback(false, true);
+				return callback(false);
 			}else{
-				return callback(new Error('This username is already used'), false);
+				return callback(new Error('This username is already used'));
 			}
 		});
+		conn.release();
 	});
 },checkFormats = function(username, callback){
 	usernamePattern = new RegExp(/^[a-zA-Z0-9_@[\]éè-]+$/);
 	if(!usernamePattern.test(username)){
-		return callback(new Error('Username not valid'), false);
+		return callback(new Error('Username not valid'));
 	}else{
-		return callback(false, true);
+		return callback(false);
 	}
 },register = function(username, password, repeatPassword, callback){
 	// Password
@@ -37,44 +38,44 @@ module.exports = isUsed = function(username, callback){
 	// SHA-512
 	let crypto = require('crypto');
 	if(username === undefined){
-		return callback(new Error('Please enter a username'), false);
+		return callback(new Error('Please enter a username'));
 	}
 	if(username.length < 4){
-		return callback(new Error('Your username must be at least 4 chars long'), false);
+		return callback(new Error('Your username must be at least 4 chars long'));
 	}
 	if(password === undefined){
-		return callback(new Error('Please enter a password'), false);
+		return callback(new Error('Please enter a password'));
 	}
 	if(password.length < 8){
-		return callback(new Error('Your password must be at least 8 chars long'), false);
+		return callback(new Error('Your password must be at least 8 chars long'));
 	}
 	if(repeatPassword === undefined){
-		return callback(new Error('Please repeat your password'), false);
+		return callback(new Error('Please repeat your password'));
 	}
 	if(password !== repeatPassword){
-		return callback(new Error('The passwords are different'), false);
+		return callback(new Error('The passwords are different'));
 	}
 	return getCon((dbErr, dbCon) => {
 		if(dbErr){
 			let errObj = new Error(dbErr.code);
 			errObj.name = 'server';
 
-			return callback(errObj, false);
+			return callback(errObj);
 		}
-		return checkFormats(username, (error, result) => {
+		return checkFormats(username, (error) => {
 			if(error){
-				return callback(error, result);
+				return callback(error);
 			}
 			return isUsed(username, (err, res) => {
 				if(err){
-					return callback(err, false);
+					return callback(err);
 				}
 				return bcrypt.hash(password, 10, (passErr, hash) => {
 					if(passErr){
 						let errObj = new Error(passErr.code);
 						errObj.name = 'server';
 
-						return callback(errObj, false);
+						return callback(errObj);
 					}
 					let shasum = crypto.createHash('sha512');
 					let usernameHash = shasum.update(username).digest('hex');
@@ -84,9 +85,9 @@ module.exports = isUsed = function(username, callback){
 							let errObj = new Error(queryError.code);
 							errObj.name = 'server';
 
-							return callback(errObj, false);
+							return callback(errObj);
 						}else{
-							return callback(false, true);
+							return callback(false);
 						}
 					});
 				});

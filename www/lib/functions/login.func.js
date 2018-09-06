@@ -1,25 +1,21 @@
 module.exports = authCheck = function(username, password, callback){
 	let bcrypt = require('bcrypt');
 	let crypto = require('crypto');
-	return getCon((error, connection) =>{
+	return getCon((error, connection) => {
 		if(error){
 			let errObj = new Error(error.code);
 			errObj.name = 'server';
 
-			return callback(errObj, false);
+			return callback(errObj);
 		}
 		let shasum = crypto.createHash('sha512');
 		let usernameHash = shasum.update(username).digest('hex');
 		connection.query('SELECT password FROM users WHERE BINARY username = ?', [usernameHash], function(err, dbRes, fields){
 			if(err){
-				if(callback !== undefined){
-					let errObj = new Error(err.code);
-					errObj.name = 'server';
+				let errObj = new Error(err.code);
+				errObj.name = 'server';
 
-					callback(errObj, false);
-				}else{
-					throw err;
-				}
+				callback(errObj);
 			// Username validation
 			}else if(dbRes.length > 0){
 				let passwordStr = JSON.stringify(dbRes[0]);
@@ -29,11 +25,11 @@ module.exports = authCheck = function(username, password, callback){
 					if(res){
 						return callback(false, true);
 					}else{
-						return callback(new Error('Wrong username or password'), false);
+						return callback(new Error('Wrong username or password'));
 					}
 				});
 			}else{
-				return callback(new Error('Wrong username or password'), false);
+				return callback(new Error('Wrong username or password'));
 			}
 		});
 		connection.release();

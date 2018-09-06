@@ -8,7 +8,7 @@ router.post('/', (request, response) => {
 	loadFunc(request.originalUrl);
 	let username = request.body.username;
 	let password = request.body.password;
-	authCheck(username, password, (error, result) => {
+	authCheck(username, password, (error) => {
 		if(error){
 			if(error.name === 'server'){
 				request.flash(error.name, error.message);
