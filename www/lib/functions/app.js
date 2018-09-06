@@ -1,6 +1,6 @@
 module.exports = getCon = function(callback){
-	var mysql = require('mysql');
-	var pool = mysql.createPool({
+	let mysql = require('mysql');
+	let pool = mysql.createPool({
 		connectionLimit: 100,
 		host: '127.0.0.1',
 		user: 'root',
