@@ -1,6 +1,32 @@
 $(document).ready(function(){
 	let socket = io();
+	var isTyping = 0;
 	// Send a message
+	$('#message').keyup(function(event){
+		if($('#message').val() === ''){
+			isTyping = 0;
+			socket.emit('isTyping', false);
+			// Backspace key
+		//	if(event.keyCode === 8){
+		//	}else{
+		//	}
+		}else{
+			if(isTyping === 0){
+				isTyping = 1;
+				socket.emit('isTyping', true);
+			}
+		}
+	});
+	$('#message').keypress(function(event){
+		if(event.keyCode === 13){
+			if($('#message').val() !== ''){
+				$('form').submit();
+			}
+			return false;
+		}else{
+			return true;
+		}
+	});
 	$('form').submit(function(event){
 		event.preventDefault();
 		let message = $('#message').val();
@@ -14,13 +40,20 @@ $(document).ready(function(){
 		$('#message').val('');
 		$('#message').focus();
 	})
+	socket.on('isTyping', (status, writer) => {
+		if(status){
+			$('#publicMessages').prepend("<span id=\"typing\">" + writer + " is typing ...<br><br></span>");
+		}else{
+			$('#typing').remove();
+		}
+	})
 	// Get a message
-	socket.on('getNewMsg', function(message){
+	socket.on('getNewMsg', (sender, message) => {
 		if(message.mon < 10){
 			message.mon = '0' + message.mon;
 		}
-		$('#public_messages').prepend("<span>" + message.message + "</span><hr>");
-		$('#public_messages').prepend("<div class=\'pull-right\'>" + message.h + "h " + message.min + ":" + message.s + ", le " + message.d + "/" + message.mon + " " + message.y + "</span>");
-		$('#public_messages').prepend("<span class=\'name\'><strong>" + message.name + "</strong> : </span>");
+		$('#publicMessages').prepend("<span>" + message.message + "</span><hr>");
+		$('#publicMessages').prepend("<span class=\'name\'><strong>" + sender + "</strong> : </span>");
+		$('#publicMessages').prepend("<div class=\'pull-right\'>" + message.h + "h " + message.min + ", le " + message.d + "/" + message.mon + " " + message.y + "</span>");
 	})
 })
