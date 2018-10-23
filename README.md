@@ -5,9 +5,10 @@ administration and a moderation system that provide a better control over your
 website.
 ### Components ###
 >	#### Backend ####
->		- PHP, NodeJS, socket.io 
->		- JavaScript + JQuery
+>		- NodeJS : ExpressJS
+>		- JavaScript : JQuery, socket.io
 > 		- MySQL
+		- Redis
 >	#### Frontend ####
 >		- HTML5
 >		- CSS3
@@ -16,6 +17,7 @@ website.
 ```
 git clone https://github.com/f1she3/smarter.git
 ```
+- Install / Start [Redis](https://redis.io/) and listen on port 6379
 - Set the directory `www` as your webserver's root
 - Import the file `smarter.sql` into your database
 - Edit `functions/init.php` according to your needs and your configuration
