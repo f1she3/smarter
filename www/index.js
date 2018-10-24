@@ -63,15 +63,17 @@ io.on('connection', socket => {
 			// Reverse fetch array 
 			// we fetch 30 results, so from result[29] to result[0]
 			for(let k = 29; k > -1; k--){
-				// Different timestamps
-				let date = new Date(result[k].date * 1000);
-				result[k].y = date.getFullYear();
-				result[k].mon = date.getMonth();
-				result[k].d = date.getDay();
-				result[k].h = date.getHours();
-				result[k].min = date.getMinutes();
-				result[k].s = date.getSeconds();
-				socket.emit('getNewMsg', result[k].sender, result[k]);
+				if(result[k] !== undefined){
+					// Different timestamps
+					let date = new Date(result[k].date * 1000);
+					result[k].y = date.getFullYear();
+					result[k].mon = date.getMonth();
+					result[k].d = date.getDay();
+					result[k].h = date.getHours();
+					result[k].min = date.getMinutes();
+					result[k].s = date.getSeconds();
+					socket.emit('getNewMsg', result[k].sender, result[k]);
+				}
 			}
 		}
 		socket.on('postNewMsg', message => {
