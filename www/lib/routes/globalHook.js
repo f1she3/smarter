@@ -5,7 +5,7 @@ let fs = require('fs');
 // Pages not visible by logged users
 let notLoggedPages = ['login', 'register'];
 // Pages not visible by not logged users
-let loggedPages = ['chat'];
+let loggedPages = ['chat', 'account'];
 router.get('/*', (request, response, next) => {
 	if(request.originalUrl === '/'){
 		if(request.session.username === undefined){

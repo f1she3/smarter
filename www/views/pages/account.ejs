@@ -1,0 +1,17 @@
+<% include ../body/header-2 %>
+
+<div class="page-header">
+	<h3 class="text-center">Informations</h3>
+</div>
+<pre style="border-radius: 10px">
+	<ul>
+		<li style="font-size:18px">Pseudo : <%= locals.username %></li>
+		<li style="font-size:18px">Registered on : <%= locals.regDate %></li>
+		<li style="font-size:18px">$friend_text $ret_user_infos['friend_count']</li>
+		<li style="font-size:18px">$msg_text $ret_user_infos['public_message_count']</li>
+		<li style="font-size:18px">Grade : $ranks[$ret_user_infos['rank']]</li>
+
+	</ul>
+</pre>
+
+<% include ../body/footer-2 %>
