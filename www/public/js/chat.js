@@ -42,7 +42,7 @@ $(document).ready(function(){
 	});
 	socket.on('isTyping', (status, writer) => {
 		if(status){
-			$('#publicMessages').prepend('<span id='typing'>' + writer + ' is typing ...<br><br></span>');
+			$('#publicMessages').prepend('<span id="typing">' + writer + ' is typing ...<br><br></span>');
 		}else{
 			$('#typing').remove();
 		}
