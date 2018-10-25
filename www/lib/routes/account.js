@@ -13,6 +13,6 @@ router.get('/', (request, response) => {
 				regDate: result
 			});
 		}
-	})
+	});
 });
 module.exports = router;

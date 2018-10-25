@@ -91,10 +91,10 @@ io.on('connection', socket => {
 					return;
 				}
 				io.sockets.emit('getNewMsg', socket.handshake.session.username, message);
-			})
-		})
+			});
+		});
 		socket.on('isTyping', (status, writer) => {
 			socket.broadcast.emit('isTyping', status, username);
-		})
+		});
 	});
 });

@@ -33,7 +33,7 @@ router.get('/*', (request, response, next) => {
 					fs.access('views/pages/' + pageName + '.ejs', (err) => {
 						// No view / route exists 
 						if(err){
-							request.flash('404', "The page you are looking for does not exist");
+							request.flash('404', 'The page you are looking for does not exist');
 							if(request.session.username === undefined){
 								response.render('pages/error', {
 									home: true,
@@ -59,7 +59,7 @@ router.get('/*', (request, response, next) => {
 								}
 							}else if(loggedPages.indexOf(pageName) !== -1){
 								response.locals.session = false;
-								request.flash('404', "The page you are looking for does not exist");
+								request.flash('404', 'The page you are looking for does not exist');
 								response.render('pages/error', {
 									home: true,
 									redirect: '/login'
@@ -83,7 +83,7 @@ router.get('/*', (request, response, next) => {
 					}
 				}else if(loggedPages.indexOf(pageName) !== -1){
 					response.locals.session = false;
-					request.flash('404', "The page you are looking for does not exist");
+					request.flash('404', 'The page you are looking for does not exist');
 					response.render('pages/error', {
 						home: true,
 						redirect: '/login'
@@ -101,15 +101,15 @@ router.post('/*', (request, response, next) => {
 	let pageName = request.originalUrl.substr(1);
 	if(request.session.username !== undefined){
 		if(notLoggedPages.indexOf(pageName) !== -1){
-			console.log("auth user can't access this page");
-			request.flash('404', "The page you are looking for does not exist");
+			console.log('Logged in users can not access this page');
+			request.flash('404', 'The page you are looking for does not exist');
 			response.render('pages/error');
 		}else{
 			next();
 		}
 	}else{
 		if(loggedPages.indexOf(pageName) !== -1){
-			console.log("unauth user can't access this page");
+			console.log('Guest users can not access this page');
 		}else{
 			next();
 		}

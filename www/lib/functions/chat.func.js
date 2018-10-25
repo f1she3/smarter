@@ -25,7 +25,7 @@ module.exports = insertMsg = function(sender, message, callback){
 				}else{
 					callback(false, rows);
 				}
-			})
+			});
 		}
 		connection.release();
 	});

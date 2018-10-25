@@ -36,24 +36,24 @@ $(document).ready(function(){
 		}
 		socket.emit('postNewMsg', {
 			message : $('#message').val()
-		})
+		});
 		$('#message').val('');
 		$('#message').focus();
-	})
+	});
 	socket.on('isTyping', (status, writer) => {
 		if(status){
-			$('#publicMessages').prepend("<span id=\"typing\">" + writer + " is typing ...<br><br></span>");
+			$('#publicMessages').prepend('<span id='typing'>' + writer + ' is typing ...<br><br></span>');
 		}else{
 			$('#typing').remove();
 		}
-	})
+	});
 	// Get a message
 	socket.on('getNewMsg', (sender, message) => {
 		if(message.mon < 10){
 			message.mon = '0' + message.mon;
 		}
-		$('#publicMessages').prepend("<span>" + message.message + "</span><hr>");
-		$('#publicMessages').prepend("<span class=\'name\'><strong>" + sender + "</strong> : </span>");
-		$('#publicMessages').prepend("<div class=\'pull-right\'>" + message.h + "h " + message.min + ", le " + message.d + "/" + message.mon + " " + message.y + "</span>");
-	})
-})
+		$('#publicMessages').prepend('<span>' + message.message + '</span><hr>');
+		$('#publicMessages').prepend('<span class="name"><strong>' + sender + '</strong> : </span>');
+		$('#publicMessages').prepend('<div class="pull-right">' + message.h + 'h ' + message.min + ', le ' + message.d + '/' + message.mon + ' ' + message.y + '</span>');
+	});
+});
