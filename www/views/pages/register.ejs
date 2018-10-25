@@ -1,32 +1,36 @@
 <% include ../body/header-1 %>
 
-<h2 class="text-center">Inscription</h2>
+<h2 class="text-center">Register</h2>
 
 <% include ../body/message-block %>
 
 <div class="col-sm-6 col-sm-offset-3">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><strong>S'inscrire</strong></h3>
+			<h3 class="panel-title"><strong>My identifiers</strong></h3>
 		</div>
 		<div class="panel-body">
 			<form method="POST" action="">
 				<div class="form-group">
-					<label for="username">Votre nom d'utilisateur :</label>
+					<label for="username">Your username :</label>
 					<input type="text" class="form-control"
-					placeholder="4 caractères minimum" name="username" id="username" maxlength="15" autofocus required>
+					placeholder="4 chars minimum" name="username" id="username" maxlength="15" autofocus required>
 				</div>
 				<div class="form-group">
-					<label for="password_reg">Votre mot de passe :</label>
-					<input type="password" class="form-control" placeholder="6 caractères minimum" name="password" id="password" maxlength="60" required>
+					<label for="password_reg">Your password :</label>
+					<input type="password"
+					class="form-control" placeholder="8 chars minimum" name="password" id="password" maxlength="60" required>
 				</div>
 				<div class="form-group">
-					<label for="rPassword">Répétez votre mot de passe :</label>
+					<label for="rPassword">Repeat your
+						password :</label>
 					<input type="password" class="form-control"
 					placeholder="************"
 					name="rPassword" id="rPassword" maxlength="60" required>
 				</div>
-				<button name="submit" class="btn btn-success center-block">Inscription</button>
+				<button name="submit" class="btn btn-success center-block">
+					register
+				</button>
 			</form>
 		</div>
 	</div>
