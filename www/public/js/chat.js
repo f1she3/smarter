@@ -6,10 +6,6 @@ $(document).ready(function(){
 		if($('#message').val() === ''){
 			isTyping = 0;
 			socket.emit('isTyping', false);
-			// Backspace key
-		//	if(event.keyCode === 8){
-		//	}else{
-		//	}
 		}else{
 			if(isTyping === 0){
 				isTyping = 1;
@@ -22,6 +18,7 @@ $(document).ready(function(){
 			if($('#message').val() !== ''){
 				$('form').submit();
 			}
+
 			return false;
 		}else{
 			return true;
@@ -32,6 +29,7 @@ $(document).ready(function(){
 		let message = $('#message').val();
 		if($('#message').val() === ''){
 			$('#message').focus();
+
 			return false;
 		}
 		socket.emit('postNewMsg', {
