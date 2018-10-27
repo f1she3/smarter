@@ -10,6 +10,7 @@ module.exports = getRegDate = function(username, callback){
 		let shasum = crypto.createHash('sha512');
 		let usernameHash = shasum.update(username).digest('hex');
 		connection.query('SELECT regDate FROM users WHERE BINARY username = ?', [usernameHash], function(err, dbRes, fields){
+			connection.release();
 			if(err){
 				let errObj = new Error(err.code);
 				errObj.name = 'server';
@@ -21,6 +22,5 @@ module.exports = getRegDate = function(username, callback){
 				return callback(false, regDate);
 			}
 		});
-		connection.release();
 	});
 }
