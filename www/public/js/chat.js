@@ -52,6 +52,6 @@ $(document).ready(function(){
 		}
 		$('#publicMessages').prepend('<span>' + message.message + '</span><hr>');
 		$('#publicMessages').prepend('<span class="name"><strong>' + sender + '</strong> : </span>');
-		$('#publicMessages').prepend('<div class="pull-right">' + message.h + 'h ' + message.min + ', le ' + message.d + '/' + message.mon + ' ' + message.y + '</span>');
+		$('#publicMessages').prepend('<div class="pull-right">' + message.h + 'h ' + message.min + ',  ' + message.d + '/' + message.mon + ' ' + message.y + '</span>');
 	});
 });

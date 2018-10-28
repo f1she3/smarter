@@ -69,6 +69,9 @@ io.on('connection', socket => {
 					result[k].y = date.getFullYear();
 					result[k].mon = date.getMonth();
 					result[k].d = date.getDay();
+					if(result[k].d < 10){
+						result[k].d = '0' + result[k].d;
+					}
 					result[k].h = date.getHours();
 					result[k].min = date.getMinutes();
 					result[k].s = date.getSeconds();
