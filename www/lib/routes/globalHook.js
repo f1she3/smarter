@@ -25,58 +25,73 @@ router.get('/*', (request, response, next) => {
 			return;	
 		}
 		if(!exists){
+			// Used to determine if the view as
+			// a related js script to include
 			response.locals.jsPage = pageName;
 		}
 		fs.access('lib/routes/' + pageName + '.js', (error) => {
+			// No route exists
 			if(error){
-				//if(pageName !== 'favicon.ico'){
-					fs.access('views/pages/' + pageName + '.ejs', (err) => {
-						// No view / route exists 
-						if(err){
-							request.flash('404', 'The page you are looking for does not exist');
-							if(request.session.username === undefined){
-								response.render('pages/error', {
-									home: true,
-									redirect: '/login',
-									session: false
-								});
-							}else{
-								response.render('pages/error', {
-									home: true,
-									redirect: '/chat',
-									session: true
-								});
-							}
-						// A view exists
+				fs.access('views/pages/' + pageName + '.ejs', (err) => {
+					// No view or route exists 
+					if(err){
+						request.flash('404', 'The page you are looking for does not exist');
+						response.locals.title = 'error';
+						response.locals.home = true;
+						if(request.session.username === undefined){
+							response.render('pages/error', {
+								redirect: '/login',
+								session: false
+							});
 						}else{
-							if(request.session.username !== undefined){
-								response.locals.session = true;
-								if(notLoggedPages.indexOf(pageName) !== -1){
-									response.locals.title = 'chat';
-									response.redirect('/chat');
-
-									return;
-								}
-							}else if(loggedPages.indexOf(pageName) !== -1){
-								response.locals.session = false;
-								request.flash('404', 'The page you are looking for does not exist');
-								response.render('pages/error', {
-									home: true,
-									redirect: '/login'
-								});
+							response.render('pages/error', {
+								redirect: '/chat',
+								session: true
+							});
+						}
+					// A view exists
+					}else{
+						if(pageName === 'chat' && request.session.username !== undefined){
+							response.locals.title = pageName + ' @' + request.session.username;
+						}else{
+							response.locals.title = pageName;
+						}
+						// Used to know wich page the
+						// user is on
+						response.locals.pageName = pageName;
+						if(request.session.username !== undefined){
+							response.locals.session = true;
+							if(notLoggedPages.indexOf(pageName) !== -1){
+								response.redirect('/chat');
 
 								return;
 							}
-							response.locals.title = pageName;
-							response.render('pages/' + pageName);
+						}else if(loggedPages.indexOf(pageName) !== -1){
+							response.locals.session = false;
+							request.flash('404', 'The page you are looking for does not exist');
+							response.render('pages/error', {
+								home: true,
+								redirect: '/login'
+							});
+
+							return;
 						}
-					});
-			//	}
+						response.render('pages/' + pageName);
+					}
+				});
+			// A route exists
 			}else{
+				if(pageName === 'chat' && request.session.username !== undefined){
+					response.locals.title = pageName + ' @' + request.session.username;
+				}else{
+					response.locals.title = pageName;
+				}
+				// Used to know wich page the
+				// user is on
+				response.locals.pageName = pageName;
 				if(request.session.username !== undefined){
 					response.locals.session = true;
 					if(notLoggedPages.indexOf(pageName) !== -1){
-						response.locals.title = 'chat';
 						response.redirect('/chat');
 
 						return;
@@ -91,7 +106,6 @@ router.get('/*', (request, response, next) => {
 
 					return;
 				}
-				response.locals.title = pageName;
 				next();
 			}
 		});
@@ -101,7 +115,6 @@ router.post('/*', (request, response, next) => {
 	let pageName = request.originalUrl.substr(1);
 	if(request.session.username !== undefined){
 		if(notLoggedPages.indexOf(pageName) !== -1){
-			console.log('Logged in users can not access this page');
 			request.flash('404', 'The page you are looking for does not exist');
 			response.render('pages/error');
 		}else{

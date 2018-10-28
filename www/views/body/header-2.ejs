@@ -7,7 +7,7 @@
 		<meta name="description" content="Open source real time web-based chat">
 		<meta name="author" content="f1she3">
 		<link rel="icon" href="assets/css/images/favicon.ico">
-		<title><%= locals.title %></title>
+		<title>#<%= locals.title %></title>
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
 	</head>
@@ -27,7 +27,7 @@
                 		</div>
                 		<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right"> 
-					<% if(locals.title === 'chat'){ %>
+					<% if(locals.pageName === 'chat'){ %>
 						<li class="active">
 					<% }else{ %>
 						<li>
