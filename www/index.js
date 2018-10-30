@@ -65,17 +65,22 @@ io.on('connection', socket => {
 			for(let k = 29; k > -1; k--){
 				if(result[k] !== undefined){
 					// Different timestamps
-					let date = new Date(result[k].date * 1000);
-					result[k].y = date.getFullYear();
-					result[k].mon = date.getMonth();
-					result[k].d = date.getDay();
-					if(result[k].d < 10){
-						result[k].d = '0' + result[k].d;
+					let dbDate = new Date(result[k].date);
+					let date = Array();
+					date[0] = dbDate.getFullYear();
+					date[1] = dbDate.getMonth();
+					date[2] = dbDate.getDay();
+					date[3] = dbDate.getHours();
+					date[4] = dbDate.getMinutes();
+					date[5] = dbDate.getSeconds();
+					if(date[1] < 10){
+						date[1] = '0' + date[1];
 					}
-					result[k].h = date.getHours();
-					result[k].min = date.getMinutes();
-					result[k].s = date.getSeconds();
-					socket.emit('getNewMsg', result[k].sender, result[k]);
+					if(date[2] < 10){
+						date[2] = '0' + date[2];
+					}
+					console.log(date)
+					socket.emit('getNewMsg', result[k].sender, result[k].message, date);
 				}
 			}
 		}

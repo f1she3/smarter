@@ -46,12 +46,9 @@ $(document).ready(function(){
 		}
 	});
 	// Get a message
-	socket.on('getNewMsg', (sender, message) => {
-		if(message.mon < 10){
-			message.mon = '0' + message.mon;
-		}
-		$('#publicMessages').prepend('<span>' + message.message + '</span><hr>');
+	socket.on('getNewMsg', (sender, message, date) => {
+		$('#publicMessages').prepend('<span>' + message + '</span><hr>');
 		$('#publicMessages').prepend('<span class="name"><strong>' + sender + '</strong> : </span>');
-		$('#publicMessages').prepend('<div class="pull-right">' + message.h + 'h ' + message.min + ',  ' + message.d + '/' + message.mon + ' ' + message.y + '</span>');
+		$('#publicMessages').prepend('<div class="pull-right">' + date[3] + 'h ' + date[4] + ',  ' + date[2] + '/' + date[1] + ' ' + date[0] + '</span>');
 	});
 });

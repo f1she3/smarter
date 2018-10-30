@@ -20,7 +20,7 @@ module.exports = insertMsg = function(sender, message, callback){
 		if(error){
 			callback(error);
 		}else{
-			connection.query('SELECT id, sender, UNIX_TIMESTAMP(date) as date, message FROM chat \
+			connection.query('SELECT id, sender, date, message FROM chat \
 			ORDER BY id DESC LIMIT 30', (err, rows) => {
 				connection.release();
 				if(err){
