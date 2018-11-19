@@ -3,12 +3,12 @@ let router = express.Router();
 
 router.get('/', (request, response) => {
 	loadFunc(request.originalUrl);
-	getRegDate(request.session.username, (error, result) => {
+	getUserInfos(request.session.username, (error, result) => {
 		if(error){
 			request.flash(error.name, error.message);
 			response.render('pages/error');
 		}else{
-			let date = new Date(result.regDate);
+			let date = new Date(result[0]);
 			let res = Array();
 			res[0] = date.getFullYear();
 			res[1] = date.getMonth();
