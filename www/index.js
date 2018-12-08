@@ -47,7 +47,6 @@ fs.readdir('lib/routes', (error, files) => {
 		});
 	}
 });
-
 // Global hook routes
 app.use('/*', require(path.join(__dirname, 'lib', 'routes', 'globalHook')));
 // Use session inside socket.io
@@ -65,40 +64,46 @@ io.on('connection', socket => {
 			for(let k = 29; k > -1; k--){
 				if(result[k] !== undefined){
 					// Different timestamps
-					let dbDate = new Date(result[k].date);
+					let dateObj = new Date(result[k].date);
 					let date = Array();
-					date[0] = dbDate.getFullYear();
-					date[1] = dbDate.getMonth();
-					date[2] = dbDate.getDay();
-					date[3] = dbDate.getHours();
-					date[4] = dbDate.getMinutes();
-					date[5] = dbDate.getSeconds();
+					date[0] = dateObj.getFullYear();
+					date[1] = dateObj.getMonth();
+					date[2] = dateObj.getDay();
+					date[3] = dateObj.getHours();
+					date[4] = dateObj.getMinutes();
+					date[5] = dateObj.getSeconds();
 					if(date[1] < 10){
 						date[1] = '0' + date[1];
 					}
 					if(date[2] < 10){
 						date[2] = '0' + date[2];
 					}
-					console.log(date)
 					socket.emit('getNewMsg', result[k].sender, result[k].message, date);
 				}
 			}
 		}
 		socket.on('postNewMsg', message => {
-			let date = new Date();
-			message.y = date.getFullYear();
-			message.mon = date.getMonth();
-			message.d = date.getDay();
-			message.h = date.getHours();
-			message.min = date.getMinutes();
-			message.s = date.getSeconds();
+			let dateObj = new Date();
+			let date = Array();
+			date[0] = dateObj.getFullYear();
+			date[1] = dateObj.getMonth();
+			date[2] = dateObj.getDay();
+			date[3] = dateObj.getHours();
+			date[4] = dateObj.getMinutes();
+			date[5] = dateObj.getSeconds();
+			if(date[1] < 10){
+				date[1] = '0' + date[1];
+			}
+			if(date[2] < 10){
+				date[2] = '0' + date[2];
+			}
 			insertMsg(username, message.message, error => {
 				if(error){
 					console.error(error);
 
 					return;
 				}
-				io.sockets.emit('getNewMsg', socket.handshake.session.username, message);
+				io.sockets.emit('getNewMsg', socket.handshake.session.username, message.message, date);
 			});
 		});
 		socket.on('isTyping', (status, writer) => {
