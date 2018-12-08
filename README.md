@@ -1,6 +1,6 @@
 ## Smarter ##
-![Chat page](screenshots/#chat\ john.png?raw=true "Smarter")
-![Login page](screenshots/Smarter\ v2 #login.png?raw=true "Login")
+![Chat page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/chat.png?raw=true "Smarter")
+![Login page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/login.png?raw=true "Login")
 
 Smarter is an open source real time webchat, where you can publicly chat with
 the other users, or privately chat with your friends. Smarter also provides an
