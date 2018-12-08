@@ -1,11 +1,14 @@
 ## Smarter ##
-![Chat page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/chat.png?raw=true "Smarter")
-![Login page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/login.png?raw=true "Login")
 
 Smarter is an open source real time webchat, where you can publicly chat with
 the other users, or privately chat with your friends. Smarter also provides an
 administration and a moderation system that provide a better control over your
 website.
+
+![Chat page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/chat.png?raw=true "Smarter")
+
+![Login page](https://raw.githubusercontent.com/f1she3/smarter/master/screenshots/login.png?raw=true "Login")
+
 ### Components ###
 >	#### Backend ####
 >		- NodeJS : ExpressJS
