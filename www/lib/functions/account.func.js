@@ -30,8 +30,6 @@ module.exports = getUserInfos = function(username, callback){
 					// Username validation
 					}else{
 						infos[1] = dbRes[0];
-						console.log(dbRes[0])
-						console.log(infos);
 						
 						return callback(false, infos);
 					}
