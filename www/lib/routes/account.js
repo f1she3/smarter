@@ -19,10 +19,11 @@ router.get('/', (request, response) => {
 			if(res[2] < 10){
 				res[2] = "0" + res[2];
 			}
-			//let res.day = date.getDay();
 			response.render('pages/account', {
 				username: request.session.username,
-				regDate: res
+				regDate: res,
+				friendCount: result[1],
+				msgCount: result[2]
 			});
 		}
 	});
