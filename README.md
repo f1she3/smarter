@@ -22,6 +22,7 @@ website.
 ## Installation ##
 ```
 git clone https://github.com/f1she3/smarter.git
+cd smarter && npm-install
 ```
 - Install & start [Redis](https://redis.io/) and listen on port `6379` : 
   ### Debian ###
@@ -32,6 +33,8 @@ git clone https://github.com/f1she3/smarter.git
   file `redis.conf` :  
   `bind 127.0.0.1`    
   `port 6379`
+
+- ``` npm index.js ``` will start a server on ```127.0.0.1:3000``` by default
   
 - Set the directory `www` as your webserver's root
 - Import the database `smarter.sql`
