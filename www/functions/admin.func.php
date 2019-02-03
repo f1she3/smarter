@@ -65,7 +65,7 @@
 	}
 	function server_infos(){
 		$mysqli = get_link();
-		$query = mysqli_query($mysqli, 'SELECT name FROM users');
+		$query = mysqli_query($mysqli, 'SELECT username FROM users');
 		$i = 0;
 		while($result = mysqli_fetch_assoc($query)){
 			$i++;	
