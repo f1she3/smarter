@@ -9,7 +9,7 @@ module.exports = getUserInfos = function(username, callback){
 		}
 		let shasum = crypto.createHash('sha512');
 		let usernameHash = shasum.update(username).digest('hex');
-		connection.query('SELECT regDate FROM users WHERE BINARY username = ?', [usernameHash], function(err, dbRes, fields){
+		connection.query('SELECT regDate, rank FROM users WHERE BINARY username = ?', [usernameHash], function(err, dbRes, fields){
 			if(err){
 				let errObj = new Error(err.code);
 				errObj.name = 'server';
@@ -18,8 +18,10 @@ module.exports = getUserInfos = function(username, callback){
 			// Username validation
 			}else{
 				let infos = Array();
+				console.log(dbRes[0]);
 				infos[0] = dbRes[0].regDate;
-				connection.query('SELECT COUNT(*) FROM friends WHERE BINARY sender = ? \
+				infos[1] = dbRes[0].rank;
+				connection.query('SELECT COUNT(*) AS friendsCount FROM friends WHERE BINARY sender = ? \
 				OR BINARY contact = ?', [usernameHash, usernameHash], function(err, dbRes, fields){
 					connection.release();
 					if(err){
@@ -29,9 +31,7 @@ module.exports = getUserInfos = function(username, callback){
 						callback(errObj);
 					// Username validation
 					}else{
-						infos[1] = dbRes[0];
-						console.log(dbRes[0])
-						console.log(infos);
+						infos[2] = dbRes[0].friendsCount;
 						
 						return callback(false, infos);
 					}

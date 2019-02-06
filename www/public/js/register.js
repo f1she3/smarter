@@ -1,132 +1,84 @@
 $(document).ready(function(){
-	$("#name_reg").keyup(function(e){
-		var name = $("#name_reg").val();
-		$.post("/ajax/is_free.php", {name:name}, function(free_name){
-			if(free_name != ""){
-				$("#name_reg").focus();
-				$(".errors").removeClass("alert alert-danger");
-				$(".errors").addClass("hidden");
-				$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-											<span class=\"glyphicon glyphicon-exclamation-sign\"></span> ce nom d\"utilisateur est déjà utilisé\
-										</div>");
-				return false;
-			
-			}else{
-				if(e.keyCode != 13){
-					$(".errors").removeClass("alert alert-danger");
-					$(".errors").addClass("hidden");
-					$(".errors-block").html("<div class=\"alert alert-danger invisible\">a</div>");
-				}
-			}
-		})
-	})
-	$("#email_reg").keyup(function(e){
-		var email = $("#email_reg").val();
-		$.post("/ajax/is_free.php",{email:email}, function(free_email){
-			if(free_email != ""){
-				$("#email_reg").focus();
-				$(".errors").removeClass("alert alert-danger");
-				$(".errors").addClass("hidden");
-				$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-											<span class=\"glyphicon glyphicon-exclamation-sign\"></span> cette adresse email est déjà utilisée\
-										</div>");
-				return false;
-			
-			}else{
-				if(e.keyCode != 13){
-					$(".errors").removeClass("alert alert-danger");
-					$(".errors").addClass("hidden");
-					$(".errors-block").html("<div class=\"alert alert-danger invisible\">a</div>");
-				}
-			}
-		})				
-	})
-	$("#password_reg").keyup(function(e){
+	$('#usernameReg').keyup(function(e){
+		var name = $('#usernameReg').val();
+	});
+	$('#passwordReg').keyup(function(e){
 		if(e.keyCode != 13){
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$(".errors-block").html("<div class=\"alert alert-danger invisible\">a</div>");
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger invisible">a</div>');
 		}
-	})	
-	$("button[name=reg_submit]").click(function(){
-		if($("#name_reg").val() != ""){
-			if($("#email_reg").val() != ""){
-				if($("#password_reg").val() != ""){
-					if($("#r_password_reg").val() != ""){
-						if($("#password_reg").val() == $("#r_password_reg").val()){
-							if($("#name_reg").val().length >= 4){	
-								if($("#password_reg").val().length >= 6){
-									return true;
-								
-								}else{
-									$(".errors").removeClass("alert alert-danger");
-									$(".errors").addClass("hidden");
-									$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-																<span class=\"glyphicon glyphicon-exclamation-sign\"></span> votre mot de passe est trop court\
-															</div>");
-									$("#password_reg").val("");
-									$("#r_password_reg").val("");
-									$("#password_reg").focus();
-									return false;
-								}						
-								
+	});
+	$('button[name=submit]').click(function(){
+		if($('#usernameReg').val() != ''){
+			if($('#passwordReg').val() != ''){
+				if($('#rPasswordReg').val() != ''){
+					if($('#passwordReg').val() == $('#rPasswordReg').val()){
+						if($('#usernameReg').val().length >= 4){	
+							if($('#passwordReg').val().length >= 6){
+								return true;
+							
 							}else{
-								$(".errors").removeClass("alert alert-danger");
-								$(".errors").addClass("hidden");
-								$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-															<span class=\"glyphicon glyphicon-exclamation-sign\"></span> le nom d\"utilisateur doit contenir au minimum 4 caractères\
-														</div>");
-								$("#name_reg").focus();
+								$('.errors').removeClass('alert alert-danger');
+								$('.errors').addClass('hidden');
+								$('.errors-block').html('<div class="alert alert-danger text-center">\
+															<span class="glyphicon glyphicon-exclamation-sign"></span> your password must be at least 8 chars long\
+														</div>');
+								$('#passwordReg').val('');
+								$('#rPasswordReg').val('');
+								$('#passwordReg').focus();
+
 								return false;
-							}
-				
+							}						
 						}else{
-							$(".errors").removeClass("alert alert-danger");
-							$(".errors").addClass("hidden");
-							$(".errors-block").html("<div class=\"alert alert-danger text-center\"><span class=\"glyphicon glyphicon-exclamation-sign\"></span> les mots de passe ne correspondent pas</div>");
-							$("#password_reg").val("");
-							$("#r_password_reg").val("");
-							$("#password_reg").focus();
+							$('.errors').removeClass('alert alert-danger');
+							$('.errors').addClass('hidden');
+							$('.errors-block').html('<div class="alert alert-danger text-center">\
+														<span class="glyphicon glyphicon-exclamation-sign"></span> the username must be at least 4 chars long\
+													</div>');
+							$('#usernameReg').focus();
+
 							return false;
 						}
-						
 					}else{
-						$(".errors").removeClass("alert alert-danger");
-						$(".errors").addClass("hidden");
-						$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-													<span class=\"glyphicon glyphicon-exclamation-sign\"></span> veuillez répéter votre mot de passe\
-												</div>");
-						$("#r_password_reg").focus();
+						$('.errors').removeClass('alert alert-danger');
+						$('.errors').addClass('hidden');
+						$('.errors-block').html('<div class="alert alert-danger text-center"><span class="glyphicon glyphicon-exclamation-sign"></span> please retype your password</div>');
+						$('#passwordReg').val('');
+						$('#rPasswordReg').val('');
+						$('#passwordReg').focus();
+
 						return false;
-					}	
-							
+					}
 				}else{
-					$(".errors").removeClass("alert alert-danger");
-					$(".errors").addClass("hidden");
-					$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-												<span class=\"glyphicon glyphicon-exclamation-sign\"></span> veuillez saisir votre mot de passe\
-											</div>");
-					$("#password_reg").focus();
+					$('.errors').removeClass('alert alert-danger');
+					$('.errors').addClass('hidden');
+					$('.errors-block').html('<div class="alert alert-danger text-center">\
+												<span class="glyphicon glyphicon-exclamation-sign"></span> please retype your password\
+											</div>');
+					$('#rPasswordReg').focus();
+
 					return false;
-				}
-				
+				}	
 			}else{
-				$(".errors").removeClass("alert alert-danger");
-				$(".errors").addClass("hidden");
-				$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-											<span class=\"glyphicon glyphicon-exclamation-sign\"></span> veuillez saisir une adresse email\
-										</div>");
-				$("#email_reg").focus();
+				$('.errors').removeClass('alert alert-danger');
+				$('.errors').addClass('hidden');
+				$('.errors-block').html('<div class="alert alert-danger text-center">\
+											<span class="glyphicon glyphicon-exclamation-sign"></span> please choose a password\
+										</div>');
+				$('#passwordReg').focus();
+
 				return false;
 			}
-			
 		}else{
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$(".errors-block").html("<div class=\"alert alert-danger text-center\">\
-										<span class=\"glyphicon glyphicon-exclamation-sign\"></span> veuillez saisir un pseudo\
-									</div>");
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger text-center">\
+										<span class="glyphicon glyphicon-exclamation-sign"></span> please choose an username\
+									</div>');
+			$('#usernameReg').focus();
+
 			return false;
 		}	
-	}) 
-})
+	});
+});

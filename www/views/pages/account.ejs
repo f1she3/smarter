@@ -8,9 +8,8 @@
 		<li style="font-size:18px">Pseudo : <%= locals.username %></li>
 		<li style="font-size:18px">Registered the : <%= locals.regDate[2] 
 		+ "/" + locals.regDate[1] + "/" + locals.regDate[0] %></li>
-		<li style="font-size:18px">$friend_text $ret_user_infos['friend_count']</li>
-		<li style="font-size:18px">$msg_text $ret_user_infos['public_message_count']</li>
-		<li style="font-size:18px">Grade : $ranks[$ret_user_infos['rank']]</li>
+		<li style="font-size:18px">Friends : <%= friendsCount %></li>
+		<li style="font-size:18px">Rank : <%= rank %></li>
 
 	</ul>
 </pre>

@@ -19,11 +19,14 @@ router.get('/', (request, response) => {
 			if(res[2] < 10){
 				res[2] = "0" + res[2];
 			}
-			//let res.day = date.getDay();
-			response.render('pages/account', {
-				username: request.session.username,
-				regDate: res
-			});
+			getRankList((rank) => {
+				response.render('pages/account', {
+					username: request.session.username,
+					regDate: res,
+					friendsCount: result[2],
+					rank: rank[result[1]]
+				});
+			})
 		}
 	});
 });

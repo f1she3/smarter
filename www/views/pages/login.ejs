@@ -1,6 +1,8 @@
 <% include ../body/header-1 %>
 
-<h3 class="text-center">Log in</h3>
+<div class="page-header">
+	<h3 class="text-center">Login</h3>
+</div>
 
 <% include ../body/message-block %>
 
@@ -14,14 +16,16 @@
 				<div class="form-group">
 					<label for="username">Username :</label>
 					<input class="form-control"
-					placeholder="pseudo" name="username" type="text" id="username" maxlength="15" autofocus required>
+					placeholder="pseudo" name="username"
+					type="text" id="usernameLog" maxlength="15" autofocus required>
 				</div>
 				<div class="form-group">
 					<label for="password">Password :</label>
-					<input class="form-control" placeholder="************" name="password" type="password" id="password" required>
+					<input class="form-control"
+					placeholder="************"
+					name="password" type="password" id="passwordLog" required>
 				</div>
-				<button name="submit" class="btn btn-primary
-					center-block" id="submit">Connection</button>
+				<button name="submit" class="btn btn-primary center-block">Connection</button>
 			</form>
 		</div>
 	</div>

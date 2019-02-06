@@ -18,4 +18,13 @@ module.exports = getCon = function(callback){
 	pageName = pageName.substr(1);
 	let mainDir = path.dirname(require.main.filename);
 	require(path.join(mainDir, 'lib', 'functions', pageName + '.func.js'));
+}, getRankList = function(callback){
+	let ranks = Array();
+	ranks[0] = 'User';
+	ranks[1] = 'Moderator';
+	ranks[2] = 'Super moderator';
+	ranks[3] = 'Administrator';
+	ranks[4] = 'Super administrator';
+
+	callback(ranks);
 }

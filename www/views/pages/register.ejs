@@ -1,6 +1,8 @@
 <% include ../body/header-1 %>
 
-<h2 class="text-center">Register</h2>
+<div class="page-header">
+	<h2 class="text-center">Register</h2>
+</div>
 
 <% include ../body/message-block %>
 
@@ -14,19 +16,21 @@
 				<div class="form-group">
 					<label for="username">Your username :</label>
 					<input type="text" class="form-control"
-					placeholder="4 chars minimum" name="username" id="username" maxlength="15" autofocus required>
+					placeholder="4 chars minimum"
+					name="username" id="usernameReg" maxlength="15" autofocus required>
 				</div>
 				<div class="form-group">
 					<label for="password_reg">Your password :</label>
 					<input type="password"
-					class="form-control" placeholder="8 chars minimum" name="password" id="password" maxlength="60" required>
+					class="form-control" placeholder="8 chars minimum" name="password"
+					id="passwordReg" maxlength="60" required>
 				</div>
 				<div class="form-group">
 					<label for="rPassword">Repeat your
 						password :</label>
 					<input type="password" class="form-control"
 					placeholder="************"
-					name="rPassword" id="rPassword" maxlength="60" required>
+					name="rPasswordReg" id="rPasswordReg" maxlength="60" required>
 				</div>
 				<button name="submit" class="btn btn-success center-block">
 					register

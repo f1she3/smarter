@@ -1,109 +1,109 @@
 $(document).ready(function(){
-	$("#o_password").keyup(function(e){
+	$('#oldPassword').keyup(function(e){
 		if(e.keyCode != 13){
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$('.errors-block').html("<div class='alert alert-danger invisible'>a</div>");		
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger invisible">a</div>');		
 		}	
 	})
-	$("#n_password").keyup(function(e){
+	$('#newPassword').keyup(function(e){
 		if(e.keyCode != 13){
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$('.errors-block').html("<div class='alert alert-danger invisible'>a</div>");		
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger invisible">a</div>');		
 		}	
 	})
-	$("#r_password").keyup(function(e){
+	$('#repeatPassword').keyup(function(e){
 		if(e.keyCode != 13){
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$('.errors-block').html("<div class='alert alert-danger invisible'>a</div>");		
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger invisible">a</div>');		
 		}	
 	})
-	$("button[name=submit]").click(function(){
-		if($("#o_password").val() != ""){
-			if($("#n_password").val() != ""){
-				if($("#r_password").val() != ""){
-					if($("#o_password").val() != $("#n_password").val()){
-						if($("#n_password").val() == $("#r_password").val()){
-							if($("#o_password").val().length >= 6){	
-								if($("#n_password").val().length >= 6){
+	$('button[name=submit]').click(function(){
+		if($('#oldPassword').val() != ''){
+			if($('#newPassword').val() != ''){
+				if($('#repeatPassword').val() != ''){
+					if($('#oldPassword').val() != $('#newPassword').val()){
+						if($('#newPassword').val() == $('#repeatPassword').val()){
+							if($('#oldPassword').val().length >= 8){	
+								if($('#newPassword').val().length >= 8){
 									return true;
 								
 								}else{
-									$(".errors").removeClass("alert alert-danger");
-									$(".errors").addClass("hidden");
-									$(".errors-block").html("<div class='alert alert-danger text-center'>\
-																<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> le nouveau mot de passe est trop court\
-															</div>");
-									$("#n_password").val("");
-									$("#r_password").val("");
-									$("#n_password").focus();
+									$('.errors').removeClass('alert alert-danger');
+									$('.errors').addClass('hidden');
+									$('.errors-block').html('<div class="alert alert-danger text-center">\
+																<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> the new password is too short (8 chars min)\
+															</div>');
+									$('#newPassword').val('');
+									$('#repeatPassword').val('');
+									$('#newPassword').focus();
 									return false;
 								}
 							
 							}else{	
-								$(".errors").removeClass("alert alert-danger");
-								$(".errors").addClass("hidden");
-								$(".errors-block").html("<div class='alert alert-danger text-center'>\
-															<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> l'ancien mot de passe est incorrect\
-														</div>");
-								$("#o_password").val("");
-								$("#o_password").focus();
+								$('.errors').removeClass('alert alert-danger');
+								$('.errors').addClass('hidden');
+								$('.errors-block').html('<div class="alert alert-danger text-center">\
+															<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> the old password is incorrect\
+														</div>');
+								$('#oldPassword').val('');
+								$('#oldPassword').focus();
 								return false;
 							}
 
 						}else{
-							$(".errors").removeClass("alert alert-danger");
-							$(".errors").addClass("hidden");
-							$(".errors-block").html("<div class='alert alert-danger text-center'>\
-														<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> les deux mots de passe ne correspondent pas\
-													</div>");
-							$("#n_password").val("");
-							$("#r_password").val("");
-							$("#n_password").focus();
+							$('.errors').removeClass('alert alert-danger');
+							$('.errors').addClass('hidden');
+							$('.errors-block').html('<div class="alert alert-danger text-center">\
+														<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> the new passwords don\'t match\
+													</div>');
+							$('#newPassword').val('');
+							$('#repeatPassword').val('');
+							$('#newPassword').focus();
 							return false;
 						}
 					
 					}else{	
-						$(".errors").removeClass("alert alert-danger");
-						$(".errors").addClass("hidden");
-						$(".errors-block").html("<div class='alert alert-danger text-center'>\
-													<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> veuillez choisir un mot de passe différent de l\'ancien\
-												</div>");
-						$("#n_password").val("");
-						$("#r_password").val("");
-						$("#n_password").focus();
+						$('.errors').removeClass('alert alert-danger');
+						$('.errors').addClass('hidden');
+						$('.errors-block').html('<div class="alert alert-danger text-center">\
+													<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> please choose a new password\
+												</div>');
+						$('#newPassword').val('');
+						$('#repeatPassword').val('');
+						$('#newPassword').focus();
 						return false;
 					}
 				
 				}else{
-					$(".errors").removeClass("alert alert-danger");
-					$(".errors").addClass("hidden");
-						$(".errors-block").html("<div class='alert alert-danger text-center'>\
-													<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> veuillez répéter votre mot de passe\
-												</div>");
-					$("#r_password").focus();
+					$('.errors').removeClass('alert alert-danger');
+					$('.errors').addClass('hidden');
+						$('.errors-block').html('<div class="alert alert-danger text-center">\
+													<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> please repeat your new password\
+												</div>');
+					$('#repeatPassword').focus();
 					return false;
 				}
 			
 			}else{		
-				$(".errors").removeClass("alert alert-danger");
-				$(".errors").addClass("hidden");
-				$(".errors-block").html("<div class='alert alert-danger text-center'>\
-											<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> veuillez saisir votre nouveau votre mot de passe\
-										</div>");
-				$("#n_password").focus();
+				$('.errors').removeClass('alert alert-danger');
+				$('.errors').addClass('hidden');
+				$('.errors-block').html('<div class="alert alert-danger text-center">\
+											<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> please type your new password\
+										</div>');
+				$('#newPassword').focus();
 				return false;
 			}
 		
 		}else{		
-			$(".errors").removeClass("alert alert-danger");
-			$(".errors").addClass("hidden");
-			$(".errors-block").html("<div class='alert alert-danger text-center'>\
-										<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> veuillez saisir votre ancien votre mot de passe\
-									</div>");
-			$("#o_password").focus();
+			$('.errors').removeClass('alert alert-danger');
+			$('.errors').addClass('hidden');
+			$('.errors-block').html('<div class="alert alert-danger text-center">\
+										<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> please type your old password\
+									</div>');
+			$('#oldPassword').focus();
 			return false;
 		}
 	})
