@@ -15,7 +15,6 @@ module.exports = getCon = function(callback){
 // require the function associated to a route
 }, loadFunc = function(pageName){
 	let path = require('path');
-	pageName = pageName.substr(1);
 	let mainDir = path.dirname(require.main.filename);
 	require(path.join(mainDir, 'lib', 'functions', pageName + '.func.js'));
 }, getRankList = function(callback){

@@ -18,7 +18,6 @@ module.exports = getUserInfos = function(username, callback){
 			// Username validation
 			}else{
 				let infos = Array();
-				console.log(dbRes[0]);
 				infos[0] = dbRes[0].regDate;
 				infos[1] = dbRes[0].rank;
 				connection.query('SELECT COUNT(*) AS friendsCount FROM friends WHERE BINARY sender = ? \

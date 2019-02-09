@@ -5,7 +5,6 @@ router.get('/', (request, response) => {
 	response.render('pages/login');
 });
 router.post('/', (request, response) => {
-	loadFunc(request.originalUrl);
 	let username = request.body.username;
 	let password = request.body.password;
 	authCheck(username, password, (error) => {

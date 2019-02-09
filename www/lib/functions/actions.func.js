@@ -20,16 +20,15 @@ module.exports = authCheck = function(username, password, callback){
 			}else if(dbRes.length > 0){
 				let passwordStr = JSON.stringify(dbRes[0]);
 				let passwordStrObj = JSON.parse(passwordStr);
-				//passwordStrObj.password = passwordStrObj.password.replace(/^\$2y(.+)$/i, '$2a$1');
 				return bcrypt.compare(password, passwordStrObj.password, (err, res) => {
 					if(res){
 						return callback(false, true);
 					}else{
-						return callback(new Error('Wrong username or password'));
+						return callback(new Error('wrong username or password'));
 					}
 				});
 			}else{
-				return callback(new Error('Wrong username or password'));
+				return callback(new Error('wrong username or password'));
 			}
 		});
 		connection.release();

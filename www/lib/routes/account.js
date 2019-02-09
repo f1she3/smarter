@@ -2,7 +2,6 @@ let express = require('express');
 let router = express.Router();
 
 router.get('/', (request, response) => {
-	loadFunc(request.originalUrl);
 	getUserInfos(request.session.username, (error, result) => {
 		if(error){
 			request.flash(error.name, error.message);

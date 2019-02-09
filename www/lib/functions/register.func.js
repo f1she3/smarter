@@ -20,7 +20,7 @@ module.exports = isUsed = function(username, callback){
 			if(dbResult.length === 0){
 				return callback(false);
 			}else{
-				return callback(new Error('This username is already used'));
+				return callback(new Error('this username is already used'));
 			}
 		});
 		conn.release();
@@ -28,7 +28,7 @@ module.exports = isUsed = function(username, callback){
 },checkFormats = function(username, callback){
 	usernamePattern = new RegExp(/^[a-zA-Z0-9_@[\]éè-]+$/);
 	if(!usernamePattern.test(username)){
-		return callback(new Error('Username not valid'));
+		return callback(new Error('invalid username'));
 	}else{
 		return callback(false);
 	}
@@ -38,22 +38,19 @@ module.exports = isUsed = function(username, callback){
 	// SHA-512
 	let crypto = require('crypto');
 	if(username === undefined){
-		return callback(new Error('Please enter a username'));
-	}
-	if(username.length < 4){
-		return callback(new Error('Your username must be at least 4 chars long'));
+		return callback(new Error('please choose a username'));
 	}
 	if(password === undefined){
-		return callback(new Error('Please enter a password'));
+		return callback(new Error('please choose a password'));
 	}
 	if(password.length < 8){
-		return callback(new Error('Your password must be at least 8 chars long'));
+		return callback(new Error('your password must be at least 8 chars long'));
 	}
 	if(repeatPassword === undefined){
-		return callback(new Error('Please repeat your password'));
+		return callback(new Error('please retype your password'));
 	}
 	if(password !== repeatPassword){
-		return callback(new Error('The passwords are different'));
+		return callback(new Error('the passwords are different'));
 	}
 	return getCon((dbErr, dbCon) => {
 		if(dbErr){

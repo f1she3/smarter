@@ -81,32 +81,37 @@ router.get('/*', (request, response, next) => {
 				});
 			// A route exists
 			}else{
-				if(pageName === 'chat' && request.session.username !== undefined){
-					response.locals.title = pageName + ' @' + request.session.username;
-				}else{
-					response.locals.title = pageName;
-				}
-				// Used to know wich page the
-				// user is on
-				response.locals.pageName = pageName;
-				if(request.session.username !== undefined){
-					response.locals.session = true;
-					if(notLoggedPages.indexOf(pageName) !== -1){
-						response.redirect('/chat');
+				fs.access('lib/functions/' + pageName + '.func.js', (error) => {
+					if(!error){
+						loadFunc(pageName);
+					}
+					if(pageName === 'chat' && request.session.username !== undefined){
+						response.locals.title = pageName + ' @' + request.session.username;
+					}else{
+						response.locals.title = pageName;
+					}
+					// Used to know wich page the
+					// user is on
+					response.locals.pageName = pageName;
+					if(request.session.username !== undefined){
+						response.locals.session = true;
+						if(notLoggedPages.indexOf(pageName) !== -1){
+							response.redirect('/chat');
+
+							return;
+						}
+					}else if(loggedPages.indexOf(pageName) !== -1){
+						response.locals.session = false;
+						request.flash('404', 'The page you are looking for does not exist');
+						response.render('pages/error', {
+							home: true,
+							redirect: '/login'
+						});
 
 						return;
 					}
-				}else if(loggedPages.indexOf(pageName) !== -1){
-					response.locals.session = false;
-					request.flash('404', 'The page you are looking for does not exist');
-					response.render('pages/error', {
-						home: true,
-						redirect: '/login'
-					});
-
-					return;
-				}
-				next();
+					next();
+				});
 			}
 		});
 	});
@@ -127,5 +132,6 @@ router.post('/*', (request, response, next) => {
 			next();
 		}
 	}
+	response.locals.title = pageName;
 });
 module.exports = router;

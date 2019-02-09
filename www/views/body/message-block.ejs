@@ -1,12 +1,23 @@
-<div class="errors-block col-sm-6 col-sm-offset-3">
+<% if(locals.flash) { %>
+	<div class="errors-block col-sm-6 col-sm-offset-3">
+<% }else{ %>
+	<div class="errors-block col-sm-6 col-sm-offset-3 invisible">
+<% } %>	
 	<% if(locals.flashType) { %>
 		<div class="alert alert-<%= locals.flashType %> text-center">
 	<% }else{ %>
 		<div class="alert text-center">
 	<% } %>
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<% if(locals.flashType === 'danger') { %>
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<% } %>
+	<% if(locals.flashType === 'success') { %>
+		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+	<% } %>
 			<% if(locals.flash) { %>
 				<%= locals.flash %>
-			<% } %>
+			<% }else{ %>
+				silence is gold
+			<% } %>	
 		</div>
 </div>

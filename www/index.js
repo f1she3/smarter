@@ -24,6 +24,7 @@ let sessionHandle = session({
 
 // Main app functions
 require(path.join(__dirname, 'lib', 'functions', 'app'));
+require(path.join(__dirname, 'lib', 'functions', 'actions.func'));
 
 // Template engine
 
