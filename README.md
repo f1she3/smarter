@@ -8,7 +8,7 @@ website.
 >		- NodeJS + ExpressJS + socket.io
 >		- JavaScript + JQuery
 > 		- MySQL
-		- Nginx
+>		- Nginx
 >		- Redis
 >	#### Frontend ####
 >		- HTML5
