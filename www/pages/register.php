@@ -83,8 +83,8 @@ if(isset($_POST['reg_submit'])){
 		<div class="panel-body">
 			<form method="POST" action="">
 				<div class="form-group">
-					<label for="name_reg">Votre nom d'utilisateur :</label>
-					<input class="form-control" placeholder="4 caractères minimum" name="username" type="text" id="name_reg" maxlength="15" autofocus required>
+					<label for="username_reg">Votre nom d'utilisateur :</label>
+					<input class="form-control" placeholder="4 caractères minimum" name="username" type="text" id="username_reg" maxlength="15" autofocus required>
 				</div>
 				<div class="form-group">
 					<label for="email_reg">Votre adresse email :</label>

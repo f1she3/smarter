@@ -11,16 +11,16 @@
 */
 if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 	$user = $_GET['user'] = secure($_GET['user']);
-	if($user != $_SESSION['name']){
+	if($user != $_SESSION['username']){
 		if(is_user($user)){
-			if(!is_blocked($_SESSION['name'], $user)){
-				view_req($_SESSION['name'], $user);
+			if(!is_blocked($_SESSION['username'], $user)){
+				view_req($_SESSION['username'], $user);
 				if(isset($_POST['accept'])){
-					answer_friend_req($_SESSION['name'], $user, 1);
+					answer_friend_req($_SESSION['username'], $user, 1);
 					redirect('private&user='.$user);
 					
 				}else if(isset($_POST['refuse'])){
-					answer_friend_req($_SESSION['name'], $user, 2);
+					answer_friend_req($_SESSION['username'], $user, 2);
 					redirect('contacts');
 				}
 				echo "<form method=\"POST\" action=\"\">
@@ -30,8 +30,8 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 							</a>
 						</div>
 					</form>";
-				$ret_is_friend = is_friend($_SESSION['name'], $user);
-				$ret_is_asked = is_asked($user, $_SESSION['name'], 0);
+				$ret_is_friend = is_friend($_SESSION['username'], $user);
+				$ret_is_asked = is_asked($user, $_SESSION['username'], 0);
 				if($ret_is_asked){
 					echo "<div class=\"page-header\">
 							<h3 class=\"text-center\">Accepter la demande de ".$ret_is_asked['sender']." ?</h3>
@@ -57,10 +57,10 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 					if(isset($_POST['submit'])){
 						if(isset($_POST['message']) && !empty($_POST['message']) && strlen($_POST['message']) <= 500){
 							$_POST['message'] = secure($_POST['message']);
-							send_private_message($_SESSION['name'], $user, $_POST['message']);
+							send_private_message($_SESSION['username'], $user, $_POST['message']);
 						}
 					}
-					display_private_chat($_SESSION['name'], $user);
+					display_private_chat($_SESSION['username'], $user);
 
 				}else{
 					if(isset($_POST['send'])){
@@ -68,7 +68,7 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 							$message = $_POST['send_req'] = secure($_POST['send_req']);
 							if(strlen($message) <= 500){
 								if(!empty($message)){
-									new_friend_req($_SESSION['name'], $user, $message);
+									new_friend_req($_SESSION['username'], $user, $message);
 									set_flash('success', "<span class=\"glyphicon glyphicon-plus\"></span> <span class=\"glyphicon glyphicon-user\"></span>");
 									redirect('private&user='.$user);
 						
@@ -77,11 +77,11 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 						}
 					}
 				}
-				$ret_is_asked_0 = is_asked($_SESSION['name'], $user, 0);
-				$ret_is_asked = is_asked($_SESSION['name'], $user, NULL);
-				$ret_reverse_is_asked = is_asked($user, $_SESSION['name'], NULL);
-				$ret_is_pending = is_asked($_SESSION['name'], $user, 0);
-				$ret_reverse_is_pending = is_asked($user, $_SESSION['name'], 0);
+				$ret_is_asked_0 = is_asked($_SESSION['username'], $user, 0);
+				$ret_is_asked = is_asked($_SESSION['username'], $user, NULL);
+				$ret_reverse_is_asked = is_asked($user, $_SESSION['username'], NULL);
+				$ret_is_pending = is_asked($_SESSION['username'], $user, 0);
+				$ret_reverse_is_pending = is_asked($user, $_SESSION['username'], 0);
 				if(!$ret_is_pending && !$ret_reverse_is_pending){
 					if(!$ret_is_friend){
 						echo "<h2 class=\"text-center page-header\">Vous n'êtes pas encore ami avec ".$user."</h2>

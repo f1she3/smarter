@@ -19,4 +19,4 @@ $(document).ready(function(){
 		return false;
 	});
 	setInterval(show_contacts, 3000);
-})
+});

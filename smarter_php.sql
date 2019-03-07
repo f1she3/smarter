@@ -1,15 +1,9 @@
--- Adminer 4.7.0 MySQL dump
+-- Adminer 4.7.1 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
-SET NAMES utf8mb4;
-
-DROP DATABASE IF EXISTS `smarter`;
-CREATE DATABASE `smarter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `smarter`;
 
 DROP TABLE IF EXISTS `ban`;
 CREATE TABLE `ban` (
@@ -19,6 +13,8 @@ CREATE TABLE `ban` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `blocked`;
 CREATE TABLE `blocked` (
@@ -59,7 +55,7 @@ CREATE TABLE `friends` (
 DROP TABLE IF EXISTS `mute`;
 CREATE TABLE `mute` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -91,4 +87,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2019-02-03 20:44:43
+-- 2019-03-07 18:17:58

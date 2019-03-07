@@ -19,7 +19,7 @@ $_SESSION['host'] = '//'.$_SERVER['HTTP_HOST'];
 define('HOST', 'p:127.0.0.1');
 define('USER', 'root');
 define('PASSWORD', '');
-define('DB_NAME', 'smarter');
+define('DB_NAME', 'smarter_php');
 $mysqli = mysqli_connect(constant('HOST'), constant('USER'), constant('PASSWORD'), constant('DB_NAME'));
 if(!mysqli_connect_errno()){
 	if(!mysqli_set_charset($mysqli, 'utf8')){

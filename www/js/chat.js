@@ -1,54 +1,72 @@
 $(document).ready(function(){
-	let socket = io();
-	var isTyping = 0;
-	// Send a message
-	$('#message').keyup(function(event){
-		if($('#message').val() === ''){
-			isTyping = 0;
-			socket.emit('isTyping', false);
+	var i = 1;
+	// Uses to know if it's a message or an accept / remove action 
+	var y = 0;
+	getMessages();
+	$("textarea[name=message]").keypress(function(e){
+		if(e.keyCode == 13){
+			if($("textarea[name=message]").val() != ""){
+				i = 1;
+				$("form").submit();
+			}
+			
+			return false;
+		}
+	});
+	$("textarea[name=message]").keyup(function(x){
+		if($("textarea[name=message]").val() == ""){
+			if(x.keyCode != 13 && y != 0){
+				y = 0;
+				$.post("/ajax/send.php", {is_typing:1, empty:1}, function(writing){
+					$(".messages").html(writing);
+				});
+				getMessages();
+			}
 		}else{
-			if(isTyping === 0){
-				isTyping = 1;
-				socket.emit('isTyping', true);
+			if(y == 0){
+				$.post("/ajax/send.php", {is_typing:1}, function(writing){
+					$(".messages").html(writing);
+				});
+				getMessages();
+			}
+			y++;
+		}
+	});
+	$("textarea[name=send_req]").keypress(function(e){
+		if(e.keyCode == 13){
+			if(e.shiftKey == false){
+				if($("textarea[name=send_req]").val() != ""){
+					$('button[name=send]').click();	
+				}
+				
+				return false;
 			}
 		}
 	});
-	$('#message').keypress(function(event){
-		if(event.keyCode === 13){
-			if($('#message').val() !== ''){
-				$('form').submit();
-			}
-
-			return false;
-		}else{
-			return true;
-		}
+	$("button[name=submit]").click(function(){
+		$("textarea").focus();
+		$("form").submit();
+		
+		return false;
 	});
-	$('form').submit(function(event){
-		event.preventDefault();
-		let message = $('#message').val();
-		if($('#message').val() === ''){
-			$('#message').focus();
-
-			return false;
+	$("form").submit(function(){
+		if($("textarea[name=message]").val() != ""){
+			var message = $("textarea[name=message]").val();
+			$.post("/ajax/send.php",{message:message}, function(data){
+				$(".messages").html(data);
+			});
+			$("textarea[name=message]").val("");
 		}
-		socket.emit('postNewMsg', {
-			message : $('#message').val()
+		$("textarea[name=message]").focus();
+		getMessages();
+
+		return false;
+	});
+	function getMessages(){
+		$.post("/ajax/get.php", function(data){
+			$(".messages").html(data);
 		});
-		$('#message').val('');
-		$('#message').focus();
-	});
-	socket.on('isTyping', (status, writer) => {
-		if(status){
-			$('#publicMessages').prepend('<span id="typing">' + writer + ' is typing ...<br><br></span>');
-		}else{
-			$('#typing').remove();
-		}
-	});
-	// Get a message
-	socket.on('getNewMsg', (sender, message, date) => {
-		$('#publicMessages').prepend('<span>' + message + '</span><hr>');
-		$('#publicMessages').prepend('<span class="name"><strong>' + sender + '</strong> : </span>');
-		$('#publicMessages').prepend('<div class="pull-right">' + date[3] + 'h ' + date[4] + ',  ' + date[2] + '/' + date[1] + ' ' + date[0] + '</span>');
-	});
+	}
+	
+	setInterval(getMessages, 900);
 });

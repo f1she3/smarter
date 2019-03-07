@@ -16,14 +16,14 @@ if(isset($_GET['page']) && !empty($_GET['page']) && is_string($_GET['page'])){
 		
 	}else if(in_array($page.'.html',$pages)){
 		$file_type = 'html';
-	}	
+	}
 	if($file_type){
 		if(is_logged()){
-			if($page == 'login' || $page == 'register'){
+			if($page === 'login' || $page === 'register'){
 				$page = 'error404';
 				$file_type = 'php';
 			}else{
-				if($page == 'admin' && get_rank($_SESSION['username']) < 3){
+				if($page === 'admin' && get_rank($_SESSION['username']) < 3){
 					$page = 'error404';
 					$file_type = 'php';
 				}else{
@@ -33,7 +33,6 @@ if(isset($_GET['page']) && !empty($_GET['page']) && is_string($_GET['page'])){
 					}
 				}
 			}
-			
 		}else{
 			if($page != 'login' && $page != 'register' && $page != 'home' &&
 				$page != 'error404' && $page != 'error403'){
@@ -41,12 +40,10 @@ if(isset($_GET['page']) && !empty($_GET['page']) && is_string($_GET['page'])){
 				$file_type = 'php';
 			}
 		}
-
 	}else{
 		$page = 'error404';
 		$file_type = 'php';
 	}
-	
 }else if(is_logged()){
 	redirect(1);
 	
