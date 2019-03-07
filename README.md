@@ -11,10 +11,9 @@ website.
 
 ### Components ###
 >	#### Backend ####
->		- NodeJS : ExpressJS
->		- JavaScript : JQuery, socket.io
+>		- PHP
+>		- JavaScript + JQuery
 > 		- MySQL
->		- Redis
 >	#### Frontend ####
 >		- HTML5
 >		- CSS3
@@ -22,20 +21,13 @@ website.
 ## Installation ##
 ```
 git clone https://github.com/f1she3/smarter.git
-cd smarter && npm-install
 ```
-- Install & start [Redis](https://redis.io/) and listen on port `6379` : 
+- Install & start [Nginx](https://nginx.org/) and [MySQL](https://mariadb.org/): 
   ### Debian ###
-  `sudo apt install redis-server`
+  `sudo apt install nginx mysql-server`
   ### Arch Linux ###
-  `sudo pacman -S redis`
-  
-  file `redis.conf` :  
-  `bind 127.0.0.1`    
-  `port 6379`
+  `sudo pacman -S nginx mariadb`
 
-- ``` npm index.js ``` will start a server on ```127.0.0.1:3000``` by default
-  
-- Set the directory `www` as your webserver's root
+- Copy nginx.conf to your config file
 - Import the database `smarter.sql`
 - Edit `functions/init.php` according to your needs and your configuration
