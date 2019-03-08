@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
 	$o_password = password_hash($_POST['o_password'], PASSWORD_BCRYPT);
 	$n_password = password_hash($_POST['n_password'], PASSWORD_BCRYPT);
 	$r_password = password_hash($_POST['r_password'], PASSWORD_BCRYPT);
-	$ret_check_pass = check_pass($_POST['o_password'], $_SESSION['name']);
+	$ret_check_pass = check_pass($_POST['o_password'], $_SESSION['username']);
 	$style = '';
 	if(!empty($_POST['o_password'])){
 		if(!empty($_POST['n_password'])){
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 				if($_POST['n_password'] == $_POST['r_password']){ if(strlen($_POST['n_password']) >= 6){
 						if($_POST['n_password'] != $_POST['o_password']){
 							if($ret_check_pass){
-								update_pass($_SESSION['name'], $n_password);
+								update_pass($_SESSION['username'], $n_password);
 								set_flash('success', "<span class=\"glyphicon glyphicon-ok\"></span> <span class=\"glyphicon glyphicon-lock\"></span>");
 								redirect(1);
 

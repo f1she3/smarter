@@ -2,9 +2,9 @@
 
 if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 	$user = $_GET['user'] = secure($_GET['user']);
-	if($user != $_SESSION['name']){
+	if($user != $_SESSION['username']){
 		if(is_user($user)){
-			if(get_rank($_SESSION['name']) > get_rank($user)){
+			if(get_rank($_SESSION['username']) > get_rank($user)){
 				if(isset($_POST) && !empty($_POST)){
 					if(isset($_POST['submit_mute'])){
 					if(isset($_POST['mute_min']) && !empty($_POST['mute_min'])){

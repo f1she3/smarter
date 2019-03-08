@@ -4,11 +4,11 @@ $style = 'a';
 $error = '';
 if(isset($_POST['submit'])){
 	$password = $_POST['password'] = secure($_POST['password']);
-	$ret_check_pass = check_pass($password, $_SESSION['name']);
+	$ret_check_pass = check_pass($password, $_SESSION['username']);
 	$style = '';
 	if(!empty($_POST['password'])){
 		if($ret_check_pass){
-			rm_account($_SESSION['name']);
+			rm_account($_SESSION['username']);
 			redirect('logout');
 
 		}else{

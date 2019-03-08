@@ -6,7 +6,7 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 		$reasons[1] = 'Propos déplacés';
 		$reasons[2] = 'Spam';
 		$reasons[3] = 'Autre';
-		if(!is_blocked($_SESSION['name'], $user)){
+		if(!is_blocked($_SESSION['username'], $user)){
 			echo "<h2 class=\"text-center\">Bloquer ".$user." ?</h2>
 				<p class=\"text-center\"><span class=\"glyphicon glyphicon-info-sign\"></span> ".$user." ne pourra plus vous  envoyer de demandes</p>
 				<h4 class=\"text-center page-header col-xs-12\">Motif</h4>
@@ -55,7 +55,7 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 							break;
 					}
 				}
-				block($_SESSION['name'], $user, $reason);
+				block($_SESSION['username'], $user, $reason);
 				set_flash('danger', "<span class=\"glyphicon glyphicon-user\"></span><span class=\"glyphicon glyphicon-volume-off\"></span>");
 				redirect(3);
 			
@@ -80,7 +80,7 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 					</div>
 				</form>";
 			if(isset($_POST['unblock'])){
-				unblock($_SESSION['name'], $user);
+				unblock($_SESSION['username'], $user);
 				set_flash('success', "<span class=\"glyphicon glyphicon-user\"></span><span class=\"glyphicon glyphicon-volume-up\"></span>");
 				redirect('private&user='.$user);
 
@@ -95,5 +95,5 @@ if(isset($_GET['user']) && !empty($_GET['user']) && is_string($_GET['user'])){
 	}
 
 }else{
-	display_blocked_users($_SESSION['name']);
+	display_blocked_users($_SESSION['username']);
 }

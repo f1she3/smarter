@@ -2,7 +2,7 @@
 	
 if(isset($_POST['submit'])){
 	if(isset($_POST['message']) && !empty($_POST['message']) && strlen($_POST['message']) <= 350){
-		if(!is_mute($_SESSION['name'])){
+		if(!is_mute($_SESSION['username'])){
 			$_POST['message'] = secure($_POST['message']);
 			send_message($_POST['message']);
 		}
