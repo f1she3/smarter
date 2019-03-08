@@ -5,7 +5,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 	if(is_logged()){
 		// Validate != 2 : same : when a friend is removed, validate is set to 2
 		$query = mysqli_prepare($mysqli, 'SELECT sender, contact, validate FROM friends WHERE (BINARY sender = ? OR BINARY contact = ?) 
-			AND BINARY deletedBy != ? AND validate != 2 ORDER BY validate DESC');
+			AND (BINARY deletedBy != ? OR BINARY deletedBy IS NULL) AND validate != 2 AND validate != 3 ORDER BY validate DESC');
 		mysqli_stmt_bind_param($query, 'sss', $_SESSION['username'], $_SESSION['username'], $_SESSION['username']);
 		mysqli_stmt_execute($query);
 		mysqli_stmt_bind_result($query, $sender, $contact, $validate);
@@ -46,8 +46,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 				$i++;
 			}
 		}
-		if($i == 0){
-			echo "<h3 class=\"text-center\">vVous n'avez aucun ami</h3>
+		if($i === 0){
+			echo "<h3 class=\"text-center\">Vous n'avez aucun ami</h3>
 				<p class=\"text-center\">Vous pouvez ajouter des amis à tout moment en leur envoyant une demande</p>";
 		}
 	}else{

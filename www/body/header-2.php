@@ -36,8 +36,9 @@
 							</a>
 						</li>	
 						<li class="dropdown <?php echo ($page == 'account' || $page == 'configuration' || $page == 'contacts') ? 'active' : '' ?>">
-							<a href="<?= $_SESSION['host'].constant('BASE_URL').'account' ?>" class="dropdown-togle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="glyphicon glyphicon-user"></span>
+							<a href="<?= $_SESSION['host'].constant('BASE_URL').'account' ?>" class="dropdown-togle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="badge notif-center" style="background-color:orange"></span>
+								<span class="glyphicon glyphicon-user"></span>
 								MON COMPTE <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
@@ -47,6 +48,7 @@
 								</a></li>
 								<li><a href="<?= $_SESSION['host'].constant('BASE_URL').'contacts' ?>">
 									<span class="glyphicon glyphicon-comment"></span> Amis
+									<span class="badge notif-center" style="background-color:orange"></span>
 								</a></li>
 								<li><a href="<?= $_SESSION['host'].constant('BASE_URL').'configuration' ?>">
 									<span class="glyphicon glyphicon-lock"></span> Identifiants

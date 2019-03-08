@@ -93,21 +93,6 @@ h6,
 	padding-left: 11px;
 	padding-top: 6px;
 }
-#event{
-	position: absolute;
-	right: 50px;
-	top: 90px;
-	border-radius: 50%;
-	width: 35px;
-	height: 35px;
-	padding: 1px;
-}
-#event a{
-	font-size: 18px;
-	text-decoration: none;
-	color: #fff;
-	margin-left: 6px;
-}
 .background{
 	background-color: #ff9800;
 }
@@ -136,17 +121,6 @@ h6,
 	}
 }
 @media screen and (max-width: 767px){
-	#event{
-		top: 16px;
-		right: 65px;
-		width: 28px;
-		height: 28px;
-		padding: 0px;
-	}
-	#event a{
-		font-size: 16px;
-		margin-left: 4.4px;
-	}
 	.flash{
 		width: 25%;
 		left: 83%;

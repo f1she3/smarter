@@ -23,10 +23,10 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 				$x++;
 			}
 			if($x > 0){
-				echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$i."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
+				echo $i;
 			
 			}else{
-				echo "<input type=\"hidden\" name=\"hidden_input\">";
+				//echo "<input type=\"hidden\" name=\"hidden_input\">";
 			}
 			
 		}else{
@@ -41,7 +41,7 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 				if($i > 9){
 					$i = 9;
 				}
-				echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$i."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
+				echo $i;
 		
 			}else{
 				$query = mysqli_prepare($mysqli, 'SELECT contact FROM friends WHERE BINARY sender = ? AND viewed != 2 AND validate = 1');
@@ -56,10 +56,9 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 					if($g > 9){
 						$g = 9;
 					}
-					echo "<a href=\"".constant('BASE_URL')."private&user=".$sender."\"><span id=\"plus\">+</span>".$g."</a><input type=\"hidden\" name=\"hidden_input\" value=\"1\">";
-					
+					echo $i;
 				}else{
-					echo "<input type=\"hidden\" name=\"hidden_input\">";
+					//echo "<input type=\"hidden\" name=\"hidden_input\">";
 				}
 			}
 		}

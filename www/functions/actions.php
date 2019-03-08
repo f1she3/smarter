@@ -57,8 +57,10 @@ function is_blocked($current_user, $username){
 	mysqli_stmt_bind_result($query, $reason);
 	$result = mysqli_stmt_fetch($query);
 	if(empty($result)){
+
 		return false;
 	}else{
+
 		return $reason;
 	}
 }
